@@ -1,89 +1,77 @@
 @import "tailwindcss";
 
 :root {
-  --color-forest: #0F3D2B;
-  --color-forest-dark: #09261B;
-  --color-forest-light: #18523C;
-  --color-sage: #A3B565;
-  --color-sage-light: #BDC987;
-  --color-sage-dark: #6D7C33;
-  --color-cream: #F1F0DC;
-  --color-cream-light: #FAF9F1;
-  --color-cream-dark: #E2E0C4;
-  --color-coral: #D94A3F;
-  --color-coral-hover: #C53B30;
-  --color-near-black: #111111;
+  --font-display: var(--font-poppins), system-ui, sans-serif;
+  --font-body: var(--font-mulish), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  --background: #F1F0DC;
-  --foreground: #111111;
+  --color-bg: #070707;
+  --color-surface: #121212;
+  --color-surface-hover: #1a1a1a;
+  --color-border: #262626;
+  --color-border-subtle: #1c1c1c;
+
+  --color-lime: #B4F23D;
+  --color-lime-hover: #9EE026;
+  --color-lime-glow: rgba(180, 242, 61, 0.15);
+
+  --color-coral: #D94A3F;
+  --color-forest: #0F3D2B;
+
+  --background: #070707;
+  --foreground: #EDEDED;
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  background-color: #F1F0DC;
-  color: #111111;
-  font-family: var(--font-sans), system-ui, sans-serif;
+  background-color: #070707;
+  color: #EDEDED;
+  font-family: var(--font-body);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* Hard offset shadow utility classes */
-.shadow-hard-xs {
-  box-shadow: 2px 2px 0px #111111;
+.font-display {
+  font-family: var(--font-display);
 }
 
-.shadow-hard-sm {
-  box-shadow: 3px 3px 0px #111111;
+.font-body {
+  font-family: var(--font-body);
 }
 
-.shadow-hard {
-  box-shadow: 4px 4px 0px #111111;
+/* Subtle glow effects */
+.glow-lime-sm {
+  box-shadow: 0 0 15px rgba(180, 242, 61, 0.2);
 }
 
-.shadow-hard-lg {
-  box-shadow: 6px 6px 0px #111111;
+.glow-lime {
+  box-shadow: 0 0 25px rgba(180, 242, 61, 0.35);
 }
 
-.shadow-hard-coral {
-  box-shadow: 3px 3px 0px #D94A3F;
+/* Minimalist border shadows */
+.shadow-minimal {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
 }
 
-/* Islamic subtle dot lattice */
-.bg-islamic-pattern {
-  background-color: #F1F0DC;
-  background-image: radial-gradient(#0F3D2B 0.65px, transparent 0.65px), radial-gradient(#0F3D2B 0.65px, #F1F0DC 0.65px);
-  background-size: 26px 26px;
-  background-position: 0 0, 13px 13px;
+/* Hard offset shadow adapted for dark theme */
+.shadow-hard-dark {
+  box-shadow: 3px 3px 0px #B4F23D;
 }
 
-/* Truck art border subtle accent */
-.border-truck-art {
-  border-image: repeating-linear-gradient(
-    45deg,
-    #D94A3F,
-    #D94A3F 10px,
-    #F1F0DC 10px,
-    #F1F0DC 15px,
-    #0F3D2B 15px,
-    #0F3D2B 25px,
-    #A3B565 25px,
-    #A3B565 35px
-  ) 4;
-}
-
-/* Custom scrollbar */
+/* Minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F0DC;
+  background: #070707;
 }
 ::-webkit-scrollbar-thumb {
-  background: #0F3D2B;
-  border-radius: 5px;
+  background: #262626;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #18523C;
+  background: #B4F23D;
 }

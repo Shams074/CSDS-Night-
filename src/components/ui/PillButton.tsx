@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 
 export interface PillButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "forest" | "sage" | "outline" | "ghost";
+  variant?: "primary" | "outline" | "secondary" | "limeOutline" | "ghost";
   size?: "sm" | "md" | "lg";
   href?: string;
   external?: boolean;
@@ -20,32 +20,30 @@ export function PillButton({
   external,
   children,
   icon,
-  iconPosition = "left",
+  iconPosition = "right",
   className,
   ...props
 }: PillButtonProps) {
   const baseClasses =
-    "inline-flex items-center justify-center font-semibold rounded-full border-2 border-[#111111] transition-all duration-150 cursor-pointer select-none text-center";
+    "inline-flex items-center justify-center font-display font-bold uppercase tracking-wider rounded-full transition-all duration-200 select-none text-center";
 
   const sizeClasses = {
-    sm: "px-4 py-1.5 text-xs shadow-hard-xs hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none",
-    md: "px-6 py-2.5 text-sm shadow-hard-sm hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#111111]",
-    lg: "px-8 py-3.5 text-base shadow-hard hover:-translate-y-1 hover:shadow-[6px_6px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#111111]",
+    sm: "px-4 py-1.5 text-xs gap-1.5",
+    md: "px-6 py-2.5 text-xs sm:text-sm gap-2",
+    lg: "px-8 py-3.5 text-sm sm:text-base gap-2.5",
   };
 
   const variantClasses = {
     primary:
-      "bg-[#D94A3F] text-white hover:bg-[#C53B30] focus-visible:ring-2 focus-visible:ring-[#D94A3F] focus-visible:ring-offset-2",
-    secondary:
-      "bg-white text-[#111111] hover:bg-[#F8F7EE] focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2",
-    forest:
-      "bg-[#0F3D2B] text-white hover:bg-[#18523C] focus-visible:ring-2 focus-visible:ring-[#0F3D2B] focus-visible:ring-offset-2",
-    sage:
-      "bg-[#A3B565] text-[#111111] hover:bg-[#92A355] focus-visible:ring-2 focus-visible:ring-[#A3B565] focus-visible:ring-offset-2",
+      "bg-[#B4F23D] text-black hover:bg-[#A3E635] shadow-lg hover:shadow-[#B4F23D]/20 active:scale-95",
     outline:
-      "bg-transparent text-[#111111] hover:bg-black/5 focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2",
+      "bg-transparent text-white border border-white/30 hover:border-[#B4F23D] hover:text-[#B4F23D] hover:bg-[#B4F23D]/5 active:scale-95",
+    limeOutline:
+      "bg-transparent text-[#B4F23D] border border-[#B4F23D] hover:bg-[#B4F23D] hover:text-black active:scale-95",
+    secondary:
+      "bg-white text-black hover:bg-gray-200 active:scale-95",
     ghost:
-      "border-transparent shadow-none hover:bg-black/5 text-[#111111] focus-visible:ring-2 focus-visible:ring-[#111111]",
+      "bg-transparent text-white/80 hover:text-white hover:bg-white/5",
   };
 
   const combinedClasses = clsx(
@@ -57,9 +55,9 @@ export function PillButton({
 
   const content = (
     <>
-      {icon && iconPosition === "left" && <span className="mr-2">{icon}</span>}
+      {icon && iconPosition === "left" && <span>{icon}</span>}
       <span>{children}</span>
-      {icon && iconPosition === "right" && <span className="ml-2">{icon}</span>}
+      {icon && iconPosition === "right" && <span>{icon}</span>}
     </>
   );
 

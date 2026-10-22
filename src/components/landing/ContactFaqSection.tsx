@@ -2,8 +2,6 @@
 
 import React, { useState } from "react";
 import { SectionHeading } from "../ui/SectionHeading";
-import { PillButton } from "../ui/PillButton";
-import { CardContainer } from "../ui/CardContainer";
 import { EVENT_CONFIG } from "@/config/event";
 import {
   MapPin,
@@ -11,132 +9,107 @@ import {
   CreditCard,
   HelpCircle,
   ChevronDown,
-  ExternalLink,
+  ArrowUpRight,
 } from "lucide-react";
 
 export function ContactFaqSection() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const iconMap: Record<string, React.ReactNode> = {
-    MapPin: <MapPin className="w-5 h-5 text-[#0F3D2B]" />,
-    Users: <Users className="w-5 h-5 text-[#0F3D2B]" />,
-    CreditCard: <CreditCard className="w-5 h-5 text-[#0F3D2B]" />,
-    HelpCircle: <HelpCircle className="w-5 h-5 text-[#0F3D2B]" />,
+    MapPin: <MapPin className="w-4 h-4 text-[#B4F23D]" />,
+    Users: <Users className="w-4 h-4 text-[#B4F23D]" />,
+    CreditCard: <CreditCard className="w-4 h-4 text-[#B4F23D]" />,
+    HelpCircle: <HelpCircle className="w-4 h-4 text-[#B4F23D]" />,
   };
 
   return (
-    <section id="faq" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#F1F0DC]">
+    <section id="faq" className="py-14 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-[#1a1a1a]">
       <div className="max-w-7xl mx-auto">
-        <SectionHeading
-          tag="Information & Support"
-          pre="Frequently Asked"
-          accent="Questions"
-          post="& Contacts"
-          subtitle="Everything you need to know about payments, dress code, venue logistics, and departmental registration."
-        />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
+          {/* Left Column: Directory & Contact (Matching "'S TALK ABOUT YOUR PROJECT!" from reference) */}
+          <div className="lg:col-span-5 space-y-6">
+            <SectionHeading
+              tag="06 • DIRECTORY"
+              pre="QUESTIONS? LET'S"
+              accent="TALK"
+              post="ABOUT THE NIGHT"
+              subtitle="Have inquiries regarding payment verification, table reservations, or batch invitations? Contact the organizing committee."
+              className="mb-6"
+            />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 items-start">
-          {/* Left Column (5 cols): Stacked Outlined Rows Panel (Exact Reference Design Component) */}
-          <div className="lg:col-span-5 space-y-4">
-            <h3 className="font-serif font-bold text-2xl text-[#0F3D2B] mb-3">
-              Event Directory
-            </h3>
-
-            {/* Rounded Outlined Container with Thin Black Outline & Offset Shadow */}
-            <CardContainer
-              variant="white"
-              className="p-2 sm:p-3 overflow-hidden divide-y-2 divide-[#111111]/15"
-            >
+            {/* Stacked Directory Items */}
+            <div className="rounded-2xl sm:rounded-3xl bg-[#121212] border border-[#262626] divide-y divide-[#1f1f1f] overflow-hidden">
               {EVENT_CONFIG.contactRows.map((row) => (
                 <div
                   key={row.id}
-                  className="p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-[#FAF9F0] transition-colors rounded-xl"
+                  className="p-4 sm:p-5 flex items-center justify-between gap-3 hover:bg-[#181818] transition-colors"
                 >
                   <div className="flex items-center gap-3.5 min-w-0">
-                    {/* Small circular icon container */}
-                    <div className="w-10 h-10 rounded-full bg-[#A3B565] border-2 border-[#111111] shadow-hard-xs flex items-center justify-center shrink-0">
-                      {iconMap[row.icon] || <HelpCircle className="w-5 h-5" />}
+                    <div className="w-9 h-9 rounded-full bg-[#1b2210] border border-[#B4F23D]/30 flex items-center justify-center shrink-0">
+                      {iconMap[row.icon] || <HelpCircle className="w-4 h-4 text-[#B4F23D]" />}
                     </div>
 
-                    {/* Bold title + one-line detail */}
                     <div className="min-w-0">
-                      <h4 className="font-serif font-bold text-sm sm:text-base text-[#111111] truncate">
+                      <h4 className="font-display font-bold text-sm text-white truncate">
                         {row.title}
                       </h4>
-                      <p className="text-xs text-[#111111]/70 truncate max-w-[210px] sm:max-w-xs mt-0.5 font-normal">
+                      <p className="text-xs text-gray-400 truncate max-w-[210px] sm:max-w-xs mt-0.5">
                         {row.detail}
                       </p>
                     </div>
                   </div>
 
-                  {/* Pill button on right */}
-                  <div className="shrink-0">
-                    <PillButton
-                      variant="secondary"
-                      size="sm"
-                      href={row.actionHref}
-                      external
-                      icon={<ExternalLink className="w-3 h-3" />}
-                      iconPosition="right"
-                    >
-                      {row.actionText}
-                    </PillButton>
-                  </div>
+                  <a
+                    href={row.actionHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full border border-white/20 hover:border-[#B4F23D] text-gray-400 hover:text-[#B4F23D] transition-colors shrink-0"
+                    title={row.title}
+                  >
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
                 </div>
               ))}
-            </CardContainer>
-
-            {/* Quick Note Card */}
-            <div className="p-4 rounded-[20px] bg-[#A3B565]/20 border-2 border-[#111111] shadow-hard-xs">
-              <span className="text-xs font-bold text-[#0F3D2B] block uppercase tracking-wider mb-1">
-                Student Help Desk
-              </span>
-              <p className="text-xs text-[#111111]/80 leading-relaxed font-normal">
-                Facing an issue uploading your receipt or need special dietary accommodations? Contact the CSDS Student Society help desk directly on WhatsApp.
-              </p>
             </div>
           </div>
 
-          {/* Right Column (7 cols): FAQ Accordion */}
-          <div className="lg:col-span-7 space-y-4">
-            <h3 className="font-serif font-bold text-2xl text-[#0F3D2B] mb-3">
-              Answers & Guidelines
+          {/* Right Column: Minimalist FAQ Accordion */}
+          <div className="lg:col-span-7 space-y-3 pt-2 lg:pt-14">
+            <h3 className="font-display font-black text-xl text-white uppercase mb-4 tracking-wider">
+              [ ANSWERS & POLICIES ]
             </h3>
 
-            <CardContainer
-              variant="white"
-              className="p-2 sm:p-3 overflow-hidden divide-y-2 divide-[#111111]/15"
-            >
+            <div className="rounded-2xl sm:rounded-3xl bg-[#121212] border border-[#262626] divide-y divide-[#1f1f1f] overflow-hidden">
               {EVENT_CONFIG.faqs.map((faq, index) => {
                 const isOpen = openFaq === index;
                 return (
                   <div
                     key={index}
-                    className="p-3.5 sm:p-4 hover:bg-[#FAF9F0] transition-colors rounded-xl"
+                    className="p-4 sm:p-5 hover:bg-[#161616] transition-colors"
                   >
                     <button
                       onClick={() => setOpenFaq(isOpen ? null : index)}
-                      className="w-full text-left flex items-center justify-between gap-4 font-serif font-bold text-base sm:text-lg text-[#111111] hover:text-[#0F3D2B] transition-colors focus:outline-none"
+                      className="w-full text-left flex items-center justify-between gap-4 font-display font-bold text-sm sm:text-base text-white hover:text-[#B4F23D] transition-colors focus:outline-none"
                     >
                       <span>{faq.question}</span>
                       <div
-                        className={`w-7 h-7 rounded-full border-2 border-[#111111] bg-[#F1F0DC] flex items-center justify-center shrink-0 transition-transform duration-200 shadow-hard-xs ${
-                          isOpen ? "rotate-180 bg-[#A3B565]" : ""
+                        className={`w-6 h-6 rounded-full border border-white/20 flex items-center justify-center shrink-0 transition-transform duration-200 ${
+                          isOpen ? "rotate-180 border-[#B4F23D] text-[#B4F23D]" : "text-gray-400"
                         }`}
                       >
-                        <ChevronDown className="w-4 h-4 text-[#0F3D2B]" />
+                        <ChevronDown className="w-3.5 h-3.5" />
                       </div>
                     </button>
 
                     {isOpen && (
-                      <div className="mt-3 text-sm text-[#111111]/80 font-normal leading-relaxed pr-6 animate-in fade-in duration-150">
+                      <div className="mt-3 text-xs sm:text-sm text-gray-400 font-normal leading-relaxed pr-6 animate-in fade-in duration-150">
                         {faq.answer}
                       </div>
                     )}
                   </div>
                 );
               })}
-            </CardContainer>
+            </div>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { CardContainer } from "@/components/ui/CardContainer";
-import { ShieldCheck, Lock, Mail, AlertCircle, Loader2, ArrowLeft } from "lucide-react";
+import { ShieldCheck, Lock, Mail, AlertCircle, Loader2, ArrowLeft, ArrowUpRight } from "lucide-react";
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("admin@csds.uop.edu.pk");
@@ -42,26 +42,19 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-[#F1F0DC]">
+    <div className="min-h-screen flex flex-col justify-between bg-[#070707] text-[#EDEDED] font-body">
       {/* Header */}
-      <header className="bg-[#0F3D2B] text-white px-4 sm:px-6 lg:px-10 py-3.5 border-b-2 border-[#111111] flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-[#A3B565] border-2 border-[#111111] flex items-center justify-center font-serif font-black text-[#0F3D2B] text-base shadow-hard-xs">
-            C
-          </div>
-          <div>
-            <span className="font-serif font-bold text-base block">
-              CSDS Peshawar
-            </span>
-            <span className="text-[10px] text-[#A3B565] font-semibold tracking-wider uppercase block">
-              Administrative Portal
-            </span>
-          </div>
+      <header className="bg-[#0c0c0c] text-white px-4 sm:px-6 lg:px-10 py-3.5 border-b border-[#262626] flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#B4F23D]" />
+          <span className="font-display font-black text-sm tracking-widest uppercase text-white">
+            CSDS ADMIN <span className="text-[#B4F23D]">&apos;26</span>
+          </span>
         </Link>
 
         <Link
           href="/"
-          className="text-xs font-bold text-white/90 hover:text-white px-3 py-1.5 rounded-full border border-white/30 hover:border-white transition-colors flex items-center gap-1.5"
+          className="text-xs font-display font-semibold tracking-wider uppercase text-gray-400 hover:text-white px-3 py-1.5 rounded-full border border-white/20 hover:border-white transition-colors flex items-center gap-1.5"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Public Site</span>
@@ -71,77 +64,76 @@ export default function AdminLoginPage() {
       {/* Main Login Card */}
       <main className="flex-grow flex items-center justify-center py-10 px-4">
         <div className="w-full max-w-md">
-          <CardContainer variant="white" className="p-6 sm:p-8">
+          <CardContainer variant="surface" className="p-6 sm:p-8 border border-[#262626]">
             <div className="text-center mb-6">
-              <div className="w-14 h-14 rounded-full bg-[#A3B565] border-2 border-[#111111] shadow-hard-xs flex items-center justify-center mx-auto mb-3 text-[#0F3D2B]">
-                <ShieldCheck className="w-7 h-7" />
+              <div className="w-12 h-12 rounded-full bg-[#1b2210] border border-[#B4F23D]/40 flex items-center justify-center mx-auto mb-3 text-[#B4F23D]">
+                <ShieldCheck className="w-6 h-6" />
               </div>
-              <h1 className="font-serif font-bold text-2xl sm:text-3xl text-[#0F3D2B]">
-                Staff & Admin Portal
+              <h1 className="font-display font-black text-2xl text-white uppercase">
+                ADMIN PORTAL
               </h1>
-              <p className="text-xs text-[#111111]/70 mt-1 font-normal">
-                Sign in to review participant proofs, approve registrations, and manage check-ins.
+              <p className="text-xs text-gray-400 mt-1">
+                Review registrations, verify payment screenshots, and dispatch passes.
               </p>
             </div>
 
-            {/* Error Banner */}
             {error && (
-              <div className="mb-5 p-3.5 rounded-xl bg-rose-50 border-2 border-rose-600 text-rose-900 text-xs font-semibold flex items-start gap-2.5 shadow-hard-xs">
-                <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+              <div className="mb-5 p-3 rounded-xl bg-rose-950/40 border border-rose-800 text-rose-300 text-xs font-semibold flex items-start gap-2.5">
+                <AlertCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                 <span>{error}</span>
               </div>
             )}
 
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-[#111111] mb-1">
-                  Administrator Email / ID
+                <label className="block text-xs font-mono uppercase text-gray-300 mb-1">
+                  Admin Email / ID
                 </label>
                 <div className="relative">
-                  <Mail className="w-4 h-4 text-gray-400 absolute left-3.5 top-3.5" />
+                  <Mail className="w-4 h-4 text-gray-500 absolute left-3.5 top-3.5" />
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="admin@csds.uop.edu.pk"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-[#111111] bg-[#FAF9F0] text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0F3D2B] shadow-hard-xs"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[#2a2a2a] bg-[#161616] text-sm text-white focus:outline-none focus:border-[#B4F23D]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#111111] mb-1">
+                <label className="block text-xs font-mono uppercase text-gray-300 mb-1">
                   Password
                 </label>
                 <div className="relative">
-                  <Lock className="w-4 h-4 text-gray-400 absolute left-3.5 top-3.5" />
+                  <Lock className="w-4 h-4 text-gray-500 absolute left-3.5 top-3.5" />
                   <input
                     type="password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••••••"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-[#111111] bg-[#FAF9F0] text-sm font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0F3D2B] shadow-hard-xs"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[#2a2a2a] bg-[#161616] text-sm text-white focus:outline-none focus:border-[#B4F23D]"
                   />
                 </div>
               </div>
 
-              {/* Dev / Quick Test Account Hint */}
-              <div className="p-3 rounded-xl bg-[#F1F0DC] border border-[#111111]/20 text-[11px] text-[#111111]/80 leading-relaxed">
-                <span className="font-bold text-[#0F3D2B] block mb-0.5">
-                  Development Credentials:
+              {/* Dev hint */}
+              <div className="p-3 rounded-xl bg-[#0c0c0c] border border-white/10 text-[11px] font-mono text-gray-400 leading-relaxed">
+                <span className="text-[#B4F23D] block font-bold mb-0.5">
+                  [ DEV PREVIEW ACCESS ]
                 </span>
-                <span>Email: <code className="font-mono font-bold text-[#0F3D2B]">admin@csds.uop.edu.pk</code></span>
+                <span>User: <strong>admin@csds.uop.edu.pk</strong></span>
                 <br />
-                <span>Password: <code className="font-mono font-bold text-[#0F3D2B]">admin12345</code></span>
+                <span>Pass: <strong>admin12345</strong></span>
               </div>
 
               <div className="pt-2">
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full inline-flex items-center justify-center font-bold text-sm px-6 py-3 rounded-full border-2 border-[#111111] bg-[#D94A3F] text-white hover:bg-[#C53B30] shadow-hard hover:shadow-hard-lg hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full inline-flex items-center justify-center font-display font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-full bg-[#B4F23D] text-black hover:bg-[#A3E635] transition-all cursor-pointer disabled:opacity-60"
                 >
                   {isLoading ? (
                     <>
@@ -149,7 +141,10 @@ export default function AdminLoginPage() {
                       <span>Authenticating...</span>
                     </>
                   ) : (
-                    <span>Sign In to Dashboard</span>
+                    <span className="flex items-center gap-1.5">
+                      <span>Sign In to Dashboard</span>
+                      <ArrowUpRight className="w-4 h-4" />
+                    </span>
                   )}
                 </button>
               </div>
@@ -158,9 +153,8 @@ export default function AdminLoginPage() {
         </div>
       </main>
 
-      {/* Minimal Footer */}
-      <footer className="py-4 text-center text-xs text-[#111111]/60">
-        Department of Computer Science & Data Science, Peshawar
+      <footer className="py-4 text-center text-xs font-mono text-gray-600">
+        CSDS Student Society • Peshawar, Pakistan
       </footer>
     </div>
   );

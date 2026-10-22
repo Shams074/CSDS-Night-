@@ -9,7 +9,6 @@ interface SectionHeadingProps {
   tag?: string;
   align?: "center" | "left";
   className?: string;
-  theme?: "cream" | "sage" | "forest";
 }
 
 export function SectionHeading({
@@ -18,43 +17,26 @@ export function SectionHeading({
   post = "",
   subtitle,
   tag,
-  align = "center",
+  align = "left",
   className,
-  theme = "cream",
 }: SectionHeadingProps) {
-  const isDark = theme === "forest";
-
   return (
     <div
       className={clsx(
-        "mb-10 md:mb-14",
+        "mb-8 sm:mb-12",
         align === "center" ? "text-center max-w-3xl mx-auto" : "text-left",
         className
       )}
     >
       {tag && (
-        <div
-          className={clsx(
-            "inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold tracking-wider uppercase mb-3 border-2 border-[#111111]",
-            theme === "sage"
-              ? "bg-[#F1F0DC] text-[#0F3D2B] shadow-hard-xs"
-              : isDark
-              ? "bg-[#A3B565] text-[#0F3D2B] shadow-hard-xs"
-              : "bg-white text-[#0F3D2B] shadow-hard-xs"
-          )}
-        >
-          <span>{tag}</span>
+        <div className="font-mono text-xs font-semibold text-[#B4F23D] tracking-widest uppercase mb-2">
+          {tag.startsWith("[") ? tag : `[ ${tag} ]`}
         </div>
       )}
 
-      <h2
-        className={clsx(
-          "font-serif font-bold text-3xl sm:text-4xl md:text-5xl lg:text-5xl tracking-tight leading-[1.15]",
-          isDark ? "text-white" : "text-[#111111]"
-        )}
-      >
+      <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-white uppercase">
         {pre}{" "}
-        <span className="text-[#D94A3F] italic font-serif relative inline-block">
+        <span className="text-[#B4F23D] inline-block">
           {accent}
         </span>{" "}
         {post}
@@ -63,9 +45,8 @@ export function SectionHeading({
       {subtitle && (
         <p
           className={clsx(
-            "mt-3.5 md:mt-4 text-base sm:text-lg font-normal max-w-2xl",
-            align === "center" ? "mx-auto" : "",
-            isDark ? "text-white/80" : "text-[#111111]/75"
+            "mt-3 sm:mt-4 text-sm sm:text-base text-gray-400 font-body font-normal leading-relaxed max-w-xl",
+            align === "center" ? "mx-auto" : ""
           )}
         >
           {subtitle}

@@ -3,30 +3,26 @@ import { clsx } from "clsx";
 
 interface CardContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  variant?: "cream" | "white" | "sage" | "forest";
+  variant?: "surface" | "black" | "highlight";
   className?: string;
-  hasShadow?: boolean;
 }
 
 export function CardContainer({
   children,
-  variant = "white",
+  variant = "surface",
   className,
-  hasShadow = true,
   ...props
 }: CardContainerProps) {
   const variantStyles = {
-    white: "bg-white text-[#111111]",
-    cream: "bg-[#F1F0DC] text-[#111111]",
-    sage: "bg-[#A3B565] text-[#111111]",
-    forest: "bg-[#0F3D2B] text-white",
+    surface: "bg-[#121212] border border-[#262626] text-[#EDEDED]",
+    black: "bg-[#070707] border border-[#1e1e1e] text-[#EDEDED]",
+    highlight: "bg-[#14180d] border border-[#B4F23D]/30 text-[#EDEDED]",
   };
 
   return (
     <div
       className={clsx(
-        "rounded-[22px] md:rounded-[26px] border-2 border-[#111111] transition-all",
-        hasShadow && "shadow-hard md:shadow-hard-lg",
+        "rounded-2xl sm:rounded-3xl p-5 sm:p-8 transition-all duration-200",
         variantStyles[variant],
         className
       )}

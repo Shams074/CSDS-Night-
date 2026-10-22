@@ -6,44 +6,40 @@ import { HighlightsSection } from "@/components/landing/HighlightsSection";
 import { DetailTabsSection } from "@/components/landing/DetailTabsSection";
 import { ScheduleSection } from "@/components/landing/ScheduleSection";
 import { FeeSection } from "@/components/landing/FeeSection";
-import { GallerySection } from "@/components/landing/GallerySection";
 import { ContactFaqSection } from "@/components/landing/ContactFaqSection";
 import { Footer } from "@/components/landing/Footer";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#F1F0DC]">
-      {/* 1. Sticky Navigation Top Bar */}
+    <div className="min-h-screen flex flex-col bg-[#070707] text-[#EDEDED] font-body selection:bg-[#B4F23D] selection:text-black">
+      {/* 1. Minimalist Top Navigation */}
       <TopBar />
 
       {/* Main Landing Sections */}
       <main className="flex-grow">
-        {/* a) Hero with Peshawar photo, serif headline, buttons, countdown */}
+        {/* a) Hero with dark cinematic photo, bold lime typography, countdown */}
         <HeroSection />
 
-        {/* b) About: Welcoming new batch & honoring graduating seniors */}
+        {/* b) About: Numbered layout [01] with photo slot & Pakhtun hospitality */}
         <AboutSection />
 
-        {/* c) Highlights: Sage section with wave top, 4-col image cards */}
+        {/* c) Highlights: 6 numbered cards with photo slots */}
         <HighlightsSection />
 
-        {/* Detail Tabs: Food, Music, Activities switcher */}
+        {/* Detail Tabs: Feast, Concert & Entertainment switcher */}
         <DetailTabsSection />
 
-        {/* d) Schedule: 3 tall poster-style cards with truck art borders */}
+        {/* d) Schedule: 3 tall poster cards with dark photography */}
         <ScheduleSection />
 
-        {/* e) Registration Fee: Split layout with group photo and sage pricing card */}
+        {/* e) Fee: Split layout with group photo slot & Rs. 2,200 tariff */}
         <FeeSection />
 
-        {/* f) Gallery of Peshawar culture and heritage */}
-        <GallerySection />
-
-        {/* g) FAQ & Contact directory panel */}
+        {/* f) Contact & FAQ directory */}
         <ContactFaqSection />
       </main>
 
-      {/* h) Footer */}
+      {/* Footer */}
       <Footer />
     </div>
   );

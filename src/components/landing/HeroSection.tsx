@@ -5,86 +5,107 @@ import Image from "next/image";
 import { PillButton } from "../ui/PillButton";
 import { CountdownTimer } from "./CountdownTimer";
 import { EVENT_CONFIG } from "@/config/event";
-import { Calendar, MapPin, Sparkles, ArrowRight } from "lucide-react";
+import { ArrowUpRight, Calendar, MapPin } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section id="home" className="px-3 sm:px-6 lg:px-8 pt-4 pb-12 sm:pb-16">
+    <section id="home" className="relative px-3 sm:px-6 lg:px-8 pt-2 pb-12 sm:pb-20">
       <div className="max-w-7xl mx-auto">
-        {/* Full-width rounded photo container with dark overlay */}
-        <div className="relative rounded-[26px] sm:rounded-[32px] overflow-hidden border-2 border-[#111111] shadow-hard-lg min-h-[580px] sm:min-h-[640px] md:min-h-[700px] flex items-center">
-          {/* Background Image - Peshawar Heritage Architecture */}
+        {/* Full-bleed cinematic hero container matching reference design */}
+        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[#262626] bg-[#0c0c0c] min-h-[580px] sm:min-h-[660px] md:min-h-[720px] flex flex-col justify-between p-6 sm:p-10 md:p-14">
+          {/* 📸 HERO PHOTO SLOT (Easily swapped in src/config/event.ts) */}
           <Image
-            src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1920&q=85"
-            alt="CSDS Peshawar Welcome Party & Farewell Night Venue"
+            src={EVENT_CONFIG.images.hero}
+            alt="CSDS Peshawar Welcome & Farewell Night"
             fill
             priority
-            className="object-cover object-center"
+            className="object-cover object-center opacity-45"
             sizes="(max-width: 1280px) 100vw, 1280px"
           />
 
-          {/* Dark gradient overlay for contrast and depth */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/40 sm:to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
+          {/* Vignette overlays for high-contrast typography */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-black/60 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/70" />
 
-          {/* Hero Content aligned to the left */}
-          <div className="relative z-10 w-full p-6 sm:p-10 md:p-14 lg:p-16 max-w-3xl">
-            {/* Pill Badge above headline */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-md border-2 border-[#111111] shadow-hard-xs mb-5 sm:mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#D94A3F] animate-pulse" />
-              <span className="text-xs sm:text-sm font-bold text-[#0F3D2B] tracking-wide">
-                Peshawar • {EVENT_CONFIG.date} • Limited {EVENT_CONFIG.seatCapacity} Seats
+          {/* Top Row: Department Info & Venue Pill */}
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-[#B4F23D] tracking-widest uppercase font-bold">
+                [ PESHAWAR • NOV 14, 2026 ]
               </span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#D94A3F]" />
             </div>
 
-            {/* Large White Serif Headline */}
-            <h1 className="font-serif font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-[1.08] drop-shadow-md">
-              Peshawar Nights. <br />
-              <span className="text-[#A3B565] italic font-serif">Honoring Seniors,</span> <br />
-              Welcoming Freshers.
-            </h1>
+            <div className="flex items-center gap-3 text-gray-300 font-mono text-[11px]">
+              <span className="flex items-center gap-1">
+                <MapPin className="w-3.5 h-3.5 text-[#B4F23D]" />
+                {EVENT_CONFIG.venue}
+              </span>
+              <span className="hidden sm:inline">•</span>
+              <span className="flex items-center gap-1">
+                <Calendar className="w-3.5 h-3.5 text-[#B4F23D]" />
+                {EVENT_CONFIG.time}
+              </span>
+            </div>
+          </div>
 
-            {/* Tagline / Subtitle */}
-            <p className="mt-5 text-base sm:text-lg md:text-xl text-white/90 font-normal leading-relaxed max-w-xl drop-shadow">
-              The Department of Computer Science & Data Science invites you to an
-              unforgettable evening of royal Peshawari dawat, live folk rubab, attan, and farewell honors.
-            </p>
+          {/* Middle & Main Typography Section (Matching reference design layout) */}
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end my-auto py-8">
+            {/* Left Big Accent Statement (matching "FREQUENCY BECOMES CULTURE") */}
+            <div className="lg:col-span-7">
+              <span className="font-mono text-xs font-semibold text-gray-400 tracking-widest block uppercase mb-2">
+                Department of Computer Science & Data Science
+              </span>
+              <h1 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] text-[#B4F23D] uppercase">
+                TRADITION <br />
+                BECOMES <br />
+                LEGACY.
+              </h1>
+            </div>
 
-            {/* Quick Venue & Fee summary */}
-            <div className="mt-4 flex flex-wrap items-center gap-y-2 gap-x-4 text-xs sm:text-sm text-white/80 font-medium">
-              <div className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-[#A3B565]" />
-                <span>{EVENT_CONFIG.venue}</span>
+            {/* Right Condensed Title & Paragraph (matching "ONE SYSTEM FOR ARTISTS...") */}
+            <div className="lg:col-span-5 space-y-4">
+              <h2 className="font-display font-black text-2xl sm:text-3xl md:text-4xl text-white tracking-tight uppercase leading-tight">
+                ONE NIGHT FOR FRESHERS, SENIORS AND SOUND.
+              </h2>
+
+              <p className="text-xs sm:text-sm text-gray-300 font-normal leading-relaxed max-w-md">
+                We curate nights, honor graduating talent, and welcome the newest
+                innovators of CSDS with royal Shinwari dawat, live rubab strings, and the grand Attan dance.
+              </p>
+
+              <div className="pt-2 flex flex-wrap items-center gap-3">
+                <PillButton
+                  variant="outline"
+                  size="md"
+                  href="/register"
+                  icon={<ArrowUpRight className="w-4 h-4" />}
+                >
+                  ENTER THE NIGHT
+                </PillButton>
+
+                <PillButton
+                  variant="primary"
+                  size="md"
+                  href="#fee"
+                >
+                  FEE: RS. 2,200
+                </PillButton>
               </div>
-              <div className="flex items-center gap-1.5">
-                <Calendar className="w-4 h-4 text-[#A3B565]" />
-                <span>{EVENT_CONFIG.time}</span>
-              </div>
             </div>
+          </div>
 
-            {/* Two Action Buttons below headline */}
-            <div className="mt-7 sm:mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
-              <PillButton
-                variant="primary"
-                size="lg"
-                href="/register"
-                icon={<Sparkles className="w-4 h-4" />}
-                iconPosition="right"
-              >
-                Register Now — Rs. 2,200
-              </PillButton>
-              <PillButton variant="secondary" size="lg" href="#schedule">
-                View Schedule
-              </PillButton>
-            </div>
-
-            {/* Live Countdown Timer */}
-            <div className="mt-9 sm:mt-11 pt-6 border-t border-white/20">
-              <span className="text-xs font-bold uppercase tracking-widest text-white/70 block mb-3">
-                Celebration Commences In
+          {/* Bottom Countdown & Live Indicators */}
+          <div className="relative z-10 pt-6 border-t border-white/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-[10px] font-mono tracking-widest uppercase text-gray-400 block mb-2">
+                DOORS OPEN IN:
               </span>
               <CountdownTimer targetDate={EVENT_CONFIG.countdownTarget} />
+            </div>
+
+            <div className="flex items-center gap-3 text-xs font-mono text-gray-400">
+              <span className="w-2 h-2 rounded-full bg-[#B4F23D] animate-ping" />
+              <span>LIMITED TO 350 ATTENDEES ONLY</span>
             </div>
           </div>
         </div>

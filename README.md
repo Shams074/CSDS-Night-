@@ -8,12 +8,12 @@ Students explore event details, schedule, Peshawari cultural feast, and register
 
 ## 🌟 Key Highlights & Design System
 
-- **Reference Design Matching**:
-  - **Forest Green** (`#0F3D2B`), **Sage Green** (`#A3B565`), **Cream** (`#F1F0DC`), **Coral Red** (`#D94A3F`), and **Near-Black** (`#111111`).
-  - **Pill Buttons & Cards**: Rounded pill buttons with a 2px near-black border and crisp hard offset shadows (`3px` / `4px` with zero blur).
-  - **Typography**: Refined serif headings with tight leading and one key coral accent word; clean Inter body; bold poster display fonts for the evening timeline.
-  - **Section Transitions**: Soft curved wave transitions connecting the cream background into sage feature sections.
-  - **Peshawar Identity**: Authentic imagery (Islamia College, Mahabat Khan Mosque, Qissa Khwani Bazaar, Bala Hisar Fort, Attan folk dance, Rubab strings) with a 100% alcohol-free hospitality policy featuring authentic Peshawari Kahwa and Shinwari Dawat.
+- **Minimalist Underground & Electric Aesthetics**:
+  - **Color Palette**: Deep Obsidian Black (`#070707`), Electric Lime (`#B4F23D`), Muted Lime (`#88C822`), Dark Card Surfaces (`#121212`, `#1A1A1A`), and Pure White.
+  - **Typography**: **Poppins** (`font-display`) for high-impact uppercase condensed headlines and buttons; **Mulish** (`font-body`) for ultra-clean, readable editorial body and metadata.
+  - **Numbered Tagging**: Bold editorial indexing across all sections (`[01]`, `[02]`, `[03]...`).
+  - **Minimalist Mobile First**: Clean border lines, sleek floating top bar, full mobile drawer, tap-friendly action buttons, and high contrast for outdoor and mobile reading.
+  - **Centralized Photo Customization**: Zero hardcoded images in components. All pictures can be replaced in one place (`src/config/event.ts`) or dropped into `public/images/`. Refer to `public/images/PHOTO_SLOTS_GUIDE.md` for exact dimensions.
 - **Student Registration Flow (`/register`)**:
   - Clear **Rs. 2,200** fee breakdown and payment instructions (Meezan Bank, Easypaisa, JazzCash) with one-click copyable account numbers.
   - Complete form: Full Name, Email, Section (A, B, C, D), Semester (1 to 8), auto-formatting 13-digit CNIC (`12345-1234567-1`), and drag-and-drop payment receipt uploader (JPG/PNG/WebP, max 5 MB with instant preview).

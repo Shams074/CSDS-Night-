@@ -12,27 +12,28 @@ export function DetailTabsSection() {
   );
 
   const tabs = [
-    { id: "food", label: "Peshawari Dawat", icon: Utensils },
-    { id: "music", label: "Concert & Attan", icon: Music2 },
-    { id: "activities", label: "Activities & Awards", icon: PartyPopper },
+    { id: "food", label: "FEAST & DINING", icon: Utensils },
+    { id: "music", label: "CONCERT & ATTAN", icon: Music2 },
+    { id: "activities", label: "ROAST & AWARDS", icon: PartyPopper },
   ] as const;
 
   const currentCards = EVENT_CONFIG.detailTabs[activeTab] || [];
 
   return (
-    <section id="details" className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 bg-[#F1F0DC]">
+    <section id="details" className="py-14 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-[#1a1a1a]">
       <div className="max-w-7xl mx-auto">
-        <SectionHeading
-          tag="Evening Elements"
-          pre="Feast, Melodies &"
-          accent="Moments"
-          post=""
-          subtitle="Explore the flavors, folk tunes, and student entertainment planned for the night."
-        />
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
+          <SectionHeading
+            tag="03 • PROGRAMME ELEMENTS"
+            pre="FEAST, MELODIES &"
+            accent="MOMENTS"
+            post=""
+            subtitle="Switch between the authentic Peshawari dishes, musical performances, and batch awards planned for the night."
+            className="mb-0 sm:mb-0"
+          />
 
-        {/* Segmented Pill Group inside an Outlined Pill */}
-        <div className="flex justify-center mb-10 sm:mb-12">
-          <div className="inline-flex p-1.5 rounded-full bg-white border-2 border-[#111111] shadow-hard">
+          {/* Minimalist Switcher Pills */}
+          <div className="inline-flex p-1 rounded-full bg-[#121212] border border-[#262626] self-start md:self-auto shrink-0">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
               const Icon = tab.icon;
@@ -40,13 +41,13 @@ export function DetailTabsSection() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-150 cursor-pointer ${
+                  className={`flex items-center gap-1.5 px-3.5 sm:px-5 py-2 rounded-full font-display text-xs font-bold tracking-wider uppercase transition-all duration-150 cursor-pointer ${
                     isActive
-                      ? "bg-[#0F3D2B] text-white shadow-sm"
-                      : "bg-transparent text-[#111111] hover:text-[#0F3D2B]"
+                      ? "bg-[#B4F23D] text-black shadow-sm"
+                      : "text-gray-400 hover:text-white"
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-3.5 h-3.5" />
                   <span>{tab.label}</span>
                 </button>
               );
@@ -54,39 +55,38 @@ export function DetailTabsSection() {
           </div>
         </div>
 
-        {/* 3-Card Row Swapping Based on Active Tab */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        {/* 3-Card Row with 📸 Photo Slots */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           {currentCards.map((card, idx) => (
             <div
               key={`${activeTab}-${idx}`}
-              className="group rounded-[22px] sm:rounded-[24px] overflow-hidden border-2 border-[#111111] shadow-hard hover:shadow-hard-lg hover:-translate-y-1 transition-all bg-white flex flex-col"
+              className="group rounded-2xl sm:rounded-3xl overflow-hidden border border-[#262626] bg-[#121212] hover:border-[#B4F23D]/50 transition-all flex flex-col justify-between"
             >
               {/* Card Image */}
-              <div className="relative h-56 sm:h-64 w-full overflow-hidden border-b-2 border-[#111111]">
+              <div className="relative h-52 sm:h-60 w-full overflow-hidden bg-black">
                 <Image
                   src={card.image}
                   alt={card.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-75 group-hover:opacity-90"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-black/20 to-transparent" />
                 <div className="absolute top-3.5 right-3.5">
-                  <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-[#A3B565] text-[#0F3D2B] border-2 border-[#111111] shadow-hard-xs">
+                  <span className="font-mono text-[10px] uppercase font-bold text-black bg-[#B4F23D] px-2.5 py-0.5 rounded-full">
                     {card.tag}
                   </span>
                 </div>
               </div>
 
-              {/* Card Text Content */}
-              <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
-                <div>
-                  <h4 className="font-serif font-bold text-xl text-[#0F3D2B] group-hover:text-[#D94A3F] transition-colors leading-snug">
-                    {card.title}
-                  </h4>
-                  <p className="mt-2 text-sm text-[#111111]/75 leading-relaxed font-normal">
-                    {card.description}
-                  </p>
-                </div>
+              {/* Card Description */}
+              <div className="p-5 sm:p-6 space-y-2">
+                <h4 className="font-display font-bold text-lg text-white group-hover:text-[#B4F23D] transition-colors leading-snug">
+                  {card.title}
+                </h4>
+                <p className="text-xs sm:text-sm text-gray-400 font-normal leading-relaxed">
+                  {card.description}
+                </p>
               </div>
             </div>
           ))}

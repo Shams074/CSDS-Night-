@@ -1,11 +1,15 @@
 /**
  * Master configuration file for CSDS Department Welcome Party & Farewell Night.
- * Edit all event details, dates, payment accounts, schedule, highlights,
- * and contact info in this single file.
+ *
+ * 📸 PHOTO CUSTOMIZATION GUIDE:
+ * To replace any photo with your own picture:
+ * 1. Place your image files into the 'public/images/' folder (e.g. 'public/images/hero.jpg').
+ * 2. In this file, change the corresponding URL to '/images/hero.jpg' (or use your own hosted image link).
  */
 
 export interface HighlightItem {
   id: string;
+  number: string;
   title: string;
   subtitle: string;
   category: "food" | "music" | "culture" | "games" | "awards" | "photo";
@@ -15,9 +19,9 @@ export interface HighlightItem {
 
 export interface ScheduleItem {
   id: string;
+  phase: string;
   title: string;
   time: string;
-  period: string;
   description: string;
   category: string;
   image: string;
@@ -30,24 +34,9 @@ export interface DetailTabCard {
   tag: string;
 }
 
-export interface GalleryItem {
-  title: string;
-  location: string;
-  image: string;
-  caption: string;
-}
-
 export interface FaqItem {
   question: string;
   answer: string;
-}
-
-export interface OrganizerContact {
-  role: string;
-  name: string;
-  phone: string;
-  email: string;
-  avatar?: string;
 }
 
 export const EVENT_CONFIG = {
@@ -56,26 +45,36 @@ export const EVENT_CONFIG = {
   year: "2026",
   department: "Department of Computer Science & Data Science",
   society: "CSDS Student Society",
-  tagline: "Celebrating New Beginnings, Honoring Lasting Legacies",
+  tagline: "ONE NIGHT FOR ARTISTS, FRESHERS, SENIORS AND SOUND",
   shortDescription:
-    "An unforgettable evening of Pakhtun hospitality, Peshawari cuisine, live rubab melodies, attan, and memories under the stars of Peshawar.",
-  
+    "An exclusive annual celebration uniting graduating seniors and welcoming the new batch of CSDS under the starlit sky of Peshawar.",
+
   // Date, Time & Venue
   date: "November 14, 2026",
   time: "6:00 PM – 11:30 PM PKT",
   doorsOpen: "5:30 PM",
-  venue: "Grand Marquee, University Town, Peshawar",
-  venueAddress: "Old Jamrud Road, University Town, Peshawar, Khyber Pakhtunkhwa",
+  venue: "Grand Marquee, University Town",
+  venueAddress: "Old Jamrud Road, University Town, Peshawar, KPK",
   city: "Peshawar, Pakistan",
   countdownTarget: "2026-11-14T18:00:00+05:00",
   seatCapacity: 350,
+
+  // 📸 CENTRAL PHOTO SLOTS (Easily swappable with your own images)
+  images: {
+    // Hero main background (crowd, stage, or venue)
+    hero: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1920&q=85",
+    // About feature photo
+    about: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80",
+    // Registration fee split block photo (group / students / friends)
+    feeCard: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80",
+  },
 
   // Registration Fee & Financials
   fee: {
     amount: 2200,
     formatted: "Rs. 2,200",
     unit: "per person",
-    note: "All-inclusive: Full Grand Peshawari Buffet Dinner, Live Musical Concert, Attan Dance, Souvenirs & Event Access Pass.",
+    note: "All-inclusive: Royal Peshawari Buffet Dinner, Live Musical Concert, Attan Dance, Souvenirs & Digital Access Pass.",
     accounts: [
       {
         type: "Bank Transfer",
@@ -95,15 +94,15 @@ export const EVENT_CONFIG = {
         type: "JazzCash",
         accountTitle: "Zaryab Khan (President CSDS)",
         accountNumber: "0301-8273945",
-        note: "Upload clear screenshot of the successful transaction SMS / App receipt",
+        note: "Upload clear screenshot of the successful transaction SMS / receipt",
       },
     ],
     instructions: [
       "Transfer Rs. 2,200 via Bank, Easypaisa, or JazzCash to any account above.",
       "Take a clear screenshot of the transaction receipt showing the Transaction ID & Date.",
-      "Complete the registration form below with your full name, CNIC, and section.",
-      "Upload the screenshot (JPG/PNG/WebP, max 5 MB).",
-      "You will receive an official confirmation email with your digital entry pass upon admin verification.",
+      "Fill in your student credentials (Name, Section, Semester, CNIC).",
+      "Upload your payment screenshot (JPG/PNG/WebP, max 5 MB).",
+      "Your official entry pass with QR code will be emailed upon review.",
     ],
   },
 
@@ -111,149 +110,155 @@ export const EVENT_CONFIG = {
   sections: ["A", "B", "C", "D"],
   semesters: [1, 2, 3, 4, 5, 6, 7, 8],
 
-  // Section 1c: Event Highlights (Row of rounded image cards)
+  // Highlights Section (Numbered cards: [01], [02], [03]...)
   highlights: [
     {
       id: "food",
-      title: "Grand Peshawari Dawat",
-      subtitle: "Authentic Chapli Kebab, Karahi, Dum Pukht & Kahwa",
+      number: "01",
+      title: "ROYAL PESHAWARI DAWAT",
+      subtitle: "Authentic Chapli Kebab, Namak Mandi Karahi, Dum Pukht & Kahwa",
       category: "food",
       image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80",
       badge: "Pure Feast",
     },
     {
       id: "music",
-      title: "Live Concert & Rubab",
-      subtitle: "Mesmerizing Pashto folk strings, Sufi, & Urdu acoustic melodies",
+      number: "02",
+      title: "LIVE CONCERT & RUBAB",
+      subtitle: "Soulful Pashto folk strings, contemporary rock & Urdu acoustic night",
       category: "music",
       image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
       badge: "Live Band",
     },
     {
       id: "culture",
-      title: "Traditional Attan & Cultural Showcase",
-      subtitle: "Historic folk dance celebration uniting every batch in rhythm",
+      number: "03",
+      title: "TRADITIONAL ATTAN CIRCLE",
+      subtitle: "High-energy ceremonial circle dance uniting every batch in synchronized rhythm",
       category: "culture",
       image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80",
       badge: "Heritage",
     },
     {
       id: "games",
-      title: "Games & Department Quizzes",
-      subtitle: "Trivia battles, hilarious senior-junior roasts, and stage contests",
+      number: "04",
+      title: "DEPARTMENT ROAST & GAMES",
+      subtitle: "Trivia battles, senior-junior showdowns, and live stage entertainment",
       category: "games",
       image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80",
-      badge: "Fun & Prizes",
+      badge: "Fun & Roast",
     },
     {
       id: "awards",
-      title: "Awards & Farewell Honors",
-      subtitle: "Batch titles, shields, faculty tributes, and graduation superlatives",
+      number: "05",
+      title: "AWARDS & FAREWELL HONORS",
+      subtitle: "Personalized senior crests, batch superlatives, and graduation tributes",
       category: "awards",
       image: "https://images.unsplash.com/photo-1569974498991-d3c12a504f95?auto=format&fit=crop&w=800&q=80",
       badge: "Memorabilia",
     },
     {
       id: "photobooth",
-      title: "Truck-Art Photo Pavilion",
-      subtitle: "Handcrafted Pakhtun decor, traditional turbans & 360° cameras",
+      number: "06",
+      title: "STUDIO PHOTO PAVILION",
+      subtitle: "High-res instant portrait station with cultural pakols, turbans & props",
       category: "photo",
       image: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=800&q=80",
       badge: "Memories",
     },
   ] as HighlightItem[],
 
-  // Detail Switcher Tabs (Section 3.5: Food, Music, Activities)
+  // Detail Switcher Tabs (Food, Music, Activities)
   detailTabs: {
     food: [
       {
         title: "Taza Chapli Kebab",
-        description: "Freshly made Peshawari chapli kebabs infused with crushed coriander, pomegranate seeds, and heirloom tomatoes.",
+        description: "Peshawar's iconic fried beef kebabs flavored with crushed pomegranate, coriander, and heirloom tomatoes.",
         image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80",
-        tag: "Chef Special",
+        tag: "Specialty",
       },
       {
         title: "Namak Mandi Mutton Karahi",
-        description: "Traditional slow-simmered shinwari karahi cooked in natural animal fat and black pepper, served with fresh tandoori naan.",
+        description: "Slow-simmered shinwari mutton karahi in natural lamb fat with black pepper and green chilies.",
         image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
-        tag: "Classic Shinwari",
+        tag: "Shinwari",
       },
       {
         title: "Peshawari Kahwa & Doodh Patti",
-        description: "Cardamom-steeped green tea served in porcelain piyalas with crunchy cardamom nuql, plus rich Karak chai.",
+        description: "Hot green tea brewed with green cardamom served with cardamom nuql, plus rich spiced milk chai.",
         image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80",
-        tag: "Heritage Beverage",
+        tag: "Beverage",
       },
     ],
     music: [
       {
-        title: "Classical Rubab Mastery",
-        description: "Heartfelt instrumental performance blending centuries-old Pakhtun melodies with contemporary soulful chords.",
+        title: "Classical Rubab Symphony",
+        description: "Soul-stirring instrumental performance blending timeless Pakhtun melodies with acoustic strings.",
         image: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=800&q=80",
         tag: "Folk Strings",
       },
       {
         title: "Student Indie Band",
-        description: "Live Urdu acoustic covers, rock medleys, and nostalgic college ballads performed by talented CSDS musicians.",
+        description: "Live Urdu acoustic covers, rock medleys, and nostalgic campus songs by CSDS musicians.",
         image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
-        tag: "Live Energy",
+        tag: "Live Sets",
       },
       {
-        title: "Traditional Attan Circle",
-        description: "The pride of Khyber: a high-energy ceremonial circle dance accompanied by thunderous Dhol beats.",
+        title: "The Grand Attan",
+        description: "The rhythmic ceremonial circle dance to thunderous Dhol beats that closes the night.",
         image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
         tag: "Cultural Peak",
       },
     ],
     activities: [
       {
-        title: "The Senior-Junior Roast & Games",
-        description: "Good-humored departmental stand-up, mock awards, coding rap battles, and rapid-fire quiz showdowns.",
+        title: "Senior-Junior Roast & Quiz",
+        description: "Good-humored departmental stand-up, funny video montages, and rapid-fire quiz showdowns.",
         image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80",
-        tag: "High Laughs",
+        tag: "Comedy",
       },
       {
         title: "Superlative Batch Awards",
-        description: "Custom engraved shields honoring 'Most Likely to Deploy on Friday', 'Night Owl Hacker', and 'Department MVP'.",
+        description: "Shields honoring 'Most Likely to Deploy on Friday', 'Night Owl Hacker', and 'Class MVP'.",
         image: "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=800&q=80",
-        tag: "Recognition",
+        tag: "Shields",
       },
       {
-        title: "Vintage Truck-Art Studio",
-        description: "Snap studio-grade instant portraits with traditional Peshawari pagris, pakols, and truck-art calligraphic frames.",
+        title: "High-Res Photo Booth",
+        description: "Studio portraits with traditional Peshawari turbans, pakols, and graduation frames.",
         image: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=80",
-        tag: "Keep Sakes",
+        tag: "Portraits",
       },
     ],
   } as Record<string, DetailTabCard[]>,
 
-  // Poster Schedule Cards (Section 3.5 Schedule)
+  // Schedule Poster Cards
   schedulePosters: [
     {
-      id: "poster-1",
-      title: "WELCOME & ARRIVAL",
+      id: "phase-1",
+      phase: "[01]",
+      title: "WELCOME & RED CARPET",
       time: "06:00 PM – 07:30 PM",
-      period: "PHASE I • RED CARPET",
-      description: "Red carpet photo walk, badge collection, welcome mocktails, and fresh cardamom kahwa greeting.",
+      description: "Arrival, badge collection, welcome mocktails, and steaming Peshawari kahwa greeting.",
       category: "Reception",
       image: "https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&w=800&q=80",
     },
     {
-      id: "poster-2",
-      title: "CONCERT & ATTAN",
+      id: "phase-2",
+      phase: "[02]",
+      title: "CONCERT, ATTAN & FEAST",
       time: "07:30 PM – 09:30 PM",
-      period: "PHASE II • MAIN STAGE",
-      description: "Rubab symphonies, student live band, the grand Attan dance circle, and grand dinner buffet.",
-      category: "Concert",
+      description: "Rubab symphonies, student live acoustic set, grand dinner buffet, and the traditional Attan circle.",
+      category: "Main Stage",
       image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80",
     },
     {
-      id: "poster-3",
-      title: "AWARDS & FAREWELL",
+      id: "phase-3",
+      phase: "[03]",
+      title: "AWARDS & FAREWELL FINALE",
       time: "09:30 PM – 11:30 PM",
-      period: "PHASE III • MEMORIES",
-      description: "Senior video recap, awards presentation, faculty blessing, and emotional send-off under fireworks.",
-      category: "Farewell",
+      description: "Senior documentary montage, departmental shields presentation, faculty blessing, and finale send-off.",
+      category: "Finale",
       image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80",
     },
   ] as ScheduleItem[],
@@ -262,138 +267,81 @@ export const EVENT_CONFIG = {
   fullSchedule: [
     { time: "05:30 PM", event: "Gates Open & Registration Desk Verification" },
     { time: "06:00 PM", event: "Welcome Red Carpet & Peshawari Kahwa Reception" },
-    { time: "06:30 PM", event: "Recitation & Welcome Address by Society President" },
-    { time: "07:00 PM", event: "Dean & Faculty Keynote Addresses" },
+    { time: "06:30 PM", event: "Welcome Address by Student Society President" },
+    { time: "07:00 PM", event: "Faculty & Dean Keynote Remarks" },
     { time: "07:30 PM", event: "Soulful Rubab Folk Concert & Student Performances" },
     { time: "08:30 PM", event: "Grand Royal Peshawari Dinner Buffet" },
     { time: "09:30 PM", event: "Traditional Attan Folk Dance Circle" },
     { time: "10:15 PM", event: "Department Awards, Senior Titles & Crests Distribution" },
-    { time: "11:00 PM", event: "Graduating Batch Memory Montage & Final Speeches" },
+    { time: "11:00 PM", event: "Graduating Batch Memory Montage & Speeches" },
     { time: "11:30 PM", event: "Farewell Photo Sessions & Closing Ceremony" },
   ],
 
-  // Gallery of Peshawar Culture & Heritage (Section 1f & 3.5)
-  gallery: [
-    {
-      title: "Islamia College Peshawar",
-      location: "University Campus",
-      image: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=900&q=80",
-      caption: "The majestic Victorian brick architecture and historic clock tower of Peshawar.",
-    },
-    {
-      title: "Mahabat Khan Mosque",
-      location: "Andar Shehr, Old City",
-      image: "https://images.unsplash.com/photo-1590076215667-873d32578505?auto=format&fit=crop&w=900&q=80",
-      caption: "17th-century Mughal white marble minarets and intricate fresco ceilings.",
-    },
-    {
-      title: "Qissa Khwani Bazaar",
-      location: "Storytellers' Market",
-      image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80",
-      caption: "Centuries of silk road hospitality, brewing brass samovars, and warm conversations.",
-    },
-    {
-      title: "Historic Bala Hisar Fort",
-      location: "Peshawar Valley",
-      image: "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=900&q=80",
-      caption: "Ancient fortress overlooking the gateway to the historic Khyber Pass.",
-    },
-    {
-      title: "Artisanal Peshawari Chappal",
-      location: "Jahangirpura Bazaar",
-      image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=900&q=80",
-      caption: "Pure leather double-stitched traditional footwear hand-shaped by master craftsmen.",
-    },
-    {
-      title: "Pakhtun Hospitality & Attan",
-      location: "Peshawar",
-      image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=900&q=80",
-      caption: "Unity and jubilation in the synchronized rhythm of the ceremonial Attan dance.",
-    },
-  ] as GalleryItem[],
-
-  // FAQ Accordion (Section 1g & 3.5)
+  // FAQ Accordion
   faqs: [
     {
       question: "Who is eligible to attend the CSDS Welcome & Farewell Night?",
       answer:
-        "All registered students of the Computer Science & Data Science Department across Semesters 1 through 8, along with graduating seniors and respected faculty members, are warmly welcome.",
+        "All registered students of the Computer Science & Data Science Department across Semesters 1 through 8, along with graduating seniors and faculty members, are warmly welcome.",
     },
     {
       question: "What is included in the Rs. 2,200 registration fee?",
       answer:
-        "Your fee covers the full evening pass: unrestricted access to the Grand Peshawari Buffet Dinner (Chapli Kebab, Mutton Karahi, Shinwari platters, desserts, and free-flowing Peshawari Kahwa), live concert performances, traditional Attan circle, awards shield souvenir, and high-resolution photo booth access.",
+        "Your pass is all-inclusive: full access to the Royal Peshawari Buffet Dinner, live concert, Attan dance circle, departmental souvenir crest, and high-res photo pavilion access.",
     },
     {
       question: "How do I make the payment and upload the screenshot?",
       answer:
-        "You can transfer Rs. 2,200 via Bank Transfer (Meezan Bank), Easypaisa, or JazzCash to the account details provided on the registration page. Save the transaction receipt screenshot, fill in your details, and upload it in the form. Our admin team will verify it within 12–24 hours.",
+        "Transfer Rs. 2,200 via Bank Transfer (Meezan Bank), Easypaisa, or JazzCash to the account details provided. Upload the receipt screenshot in the form. Our admin committee verifies submissions within 12–24 hours.",
     },
     {
       question: "Is this event alcohol-free?",
       answer:
-        "Yes, absolutely. In accordance with university regulations and cultural traditions, this event is 100% alcohol-free. We serve authentic hot Peshawari kahwa, spiced doodh patti chai, fresh mint lemonades, and gourmet mocktails throughout the evening.",
+        "Yes, 100%. In accordance with university traditions and cultural values, this event is completely alcohol-free. We serve hot Peshawari kahwa, cardamom doodh patti chai, and fresh mocktails throughout the night.",
     },
     {
       question: "What should I bring on the day of the event?",
       answer:
-        "Please bring your original Computerized National Identity Card (CNIC) or Student ID card, along with the digital QR entry pass that will be emailed to your registered address upon approval.",
-    },
-    {
-      question: "What is the dress code for the evening?",
-      answer:
-        "Traditional cultural attire (Kurta Shalwar, Waistcoat, Peshawari Chappal, Pakol) or formal Western suits are warmly recommended to honor the festive occasion.",
+        "Please bring your original CNIC or Student ID card, along with the digital QR entry pass that will be emailed to your registered address upon approval.",
     },
   ] as FaqItem[],
 
-  // Contact & Organizer Rows (Section 1g & 3.5)
+  // Contact & Organizer Rows
   contactRows: [
     {
       id: "venue",
       title: "Event Venue",
       detail: "Grand Marquee, Old Jamrud Road, University Town, Peshawar",
-      actionText: "Open Map",
+      actionText: "Map ↗",
       actionHref: "https://maps.google.com/?q=University+Town+Peshawar",
       icon: "MapPin",
     },
     {
       id: "organizers",
-      title: "Student Society Office",
+      title: "Student Society Desk",
       detail: "CSDS Department, Ground Floor, Academic Block B",
-      actionText: "Contact Us",
+      actionText: "Email ↗",
       actionHref: "mailto:society.csds@uop.edu.pk",
       icon: "Users",
     },
     {
       id: "payment",
-      title: "Payment & Verification Desk",
+      title: "Payment Verification Desk",
       detail: "Queries regarding Easypaisa, JazzCash, or screenshot review",
-      actionText: "WhatsApp Help",
+      actionText: "WhatsApp ↗",
       actionHref: "https://wa.me/923459182736?text=Hi%2C%20I%20have%20a%20query%20about%20CSDS%20Party%20Registration",
       icon: "CreditCard",
     },
-    {
-      id: "general",
-      title: "General Inquiries",
-      detail: "Have a special diet requirement or batch questions?",
-      actionText: "Ask Question",
-      actionHref: "mailto:info.csdsnight@gmail.com",
-      icon: "HelpCircle",
-    },
   ],
 
-  // Footer Social & Society Links
+  // Footer
   footer: {
     copyright: "© 2026 CSDS Student Society. All rights reserved.",
-    disclaimer:
-      "Department of Computer Science & Data Science, Peshawar. An official university student community event.",
     links: [
       { label: "Home", href: "#home" },
-      { label: "About", href: "#about" },
       { label: "Highlights", href: "#highlights" },
       { label: "Schedule", href: "#schedule" },
-      { label: "Fee Details", href: "#fee" },
-      { label: "Gallery", href: "#gallery" },
+      { label: "Fee & Pass", href: "#fee" },
       { label: "FAQ", href: "#faq" },
       { label: "Admin Portal", href: "/admin/login" },
     ],
