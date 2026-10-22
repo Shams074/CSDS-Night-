@@ -47,9 +47,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${serifFont.variable} ${sansFont.variable} ${posterFont.variable} scroll-smooth`}
     >
-      <body className="min-h-screen bg-[#F1F0DC] text-[#111111] font-sans antialiased selection:bg-[#D94A3F] selection:text-white">
+      <body
+        suppressHydrationWarning
+        className="min-h-screen bg-[#F1F0DC] text-[#111111] font-sans antialiased selection:bg-[#D94A3F] selection:text-white"
+      >
         {children}
       </body>
     </html>

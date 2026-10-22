@@ -62,7 +62,7 @@ export function CountdownTimer({ targetDate }: CountdownTimerProps) {
   ];
 
   return (
-    <div className="flex items-center gap-2 sm:gap-3.5">
+    <div className="flex items-center gap-2 sm:gap-3.5" suppressHydrationWarning>
       {units.map((unit, index) => (
         <React.Fragment key={unit.label}>
           <div className="flex flex-col items-center">
