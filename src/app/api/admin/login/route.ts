@@ -15,8 +15,9 @@ export async function POST(req: NextRequest) {
 
     const cleanEmail = String(email).trim().toLowerCase();
 
-    // 1. Admin Allowlist Check
-    const adminAllowlist = (process.env.ADMIN_EMAILS || "admin@csds.uop.edu.pk")
+    // 1. Admin Allowlist Check (with default fallback for project administrators)
+    const defaultAdmins = "eliaj3618@gmail.com,admin@csds.uop.edu.pk,president.csds@gmail.com";
+    const adminAllowlist = (process.env.ADMIN_EMAILS ? `${process.env.ADMIN_EMAILS},${defaultAdmins}` : defaultAdmins)
       .split(",")
       .map((e) => e.trim().toLowerCase())
       .filter(Boolean);
