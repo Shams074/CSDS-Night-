@@ -236,7 +236,7 @@ export function RegistrationForm() {
             </div>
             <div className="flex justify-between items-center text-xs">
               <span className="text-[#64748B]">Venue & Date:</span>
-              <span className="text-[#0B253A]">Civil Lawn • 12 Nov</span>
+              <span className="text-[#0B253A]">UET Civil Lawn • 12 Nov</span>
             </div>
           </div>
 
@@ -292,47 +292,49 @@ export function RegistrationForm() {
           </div>
 
           <span className="text-[11px] font-mono text-[#0B253A] bg-[#FEF9EE] px-2.5 py-1 rounded-full border border-[#D4A03D]/40 font-semibold self-start sm:self-auto">
-            Civil Lawn • 12 Nov 2026
+            UET Civil Lawn • 12 Nov 2026
           </span>
         </div>
 
         <p className="text-xs text-[#64748B] mt-3 leading-relaxed">
-          Transfer Rs. 2,200 via Bank, Easypaisa, or JazzCash to any account below and take a screenshot of the receipt:
+          Transfer Rs. 2,200 via SadaPay to the official CC Treasurer account below and take a screenshot of the receipt:
         </p>
 
-        {/* Account Tiles */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
+        {/* Single Account Card */}
+        <div className="mt-4">
           {EVENT_CONFIG.fee.accounts.map((acc, idx) => (
             <div
               key={acc.type}
-              className="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] flex flex-col justify-between"
+              className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] flex flex-col sm:flex-row sm:items-center justify-between gap-3"
             >
               <div>
-                <div className="flex items-center justify-between text-[11px] font-mono font-bold text-[#64748B] mb-1">
-                  <span>{acc.type}</span>
-                  <CreditCard className="w-3 h-3 text-[#D4A03D]" />
+                <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-[#64748B] mb-1">
+                  <span className="text-[#0B253A] font-bold text-xs uppercase">{acc.type}</span>
+                  <span className="text-[10px] text-[#D4A03D] bg-[#FEF9EE] px-2 py-0.5 rounded-full border border-[#D4A03D]/30 font-semibold">
+                    Treasurer CC
+                  </span>
                 </div>
-                <div className="font-mono font-bold text-[#0B253A] text-xs sm:text-sm">
+                <div className="font-mono font-bold text-[#0B253A] text-base sm:text-lg tracking-wide">
                   {acc.accountNumber}
                 </div>
-                <div className="text-[11px] text-[#64748B] mt-0.5 truncate">
-                  {acc.accountTitle}
+                <div className="text-xs text-[#475569] mt-0.5">
+                  <strong>{acc.accountTitle}</strong> — {acc.note}
                 </div>
               </div>
 
               <button
                 type="button"
                 onClick={() => copyToClipboard(acc.accountNumber, `acc-${idx}`)}
-                className="mt-2 pt-2 border-t border-[#E2E8F0] flex items-center justify-center gap-1 text-[11px] font-mono text-[#0B253A] hover:text-[#D4A03D] transition-colors cursor-pointer"
+                className="px-4 py-2 rounded-lg bg-white border border-[#E2E8F0] hover:border-[#0B253A] flex items-center justify-center gap-1.5 text-xs font-mono text-[#0B253A] hover:text-[#D4A03D] transition-colors cursor-pointer shrink-0 shadow-sm"
               >
                 {copiedAccount === `acc-${idx}` ? (
                   <>
-                    <Check className="w-3 h-3 text-emerald-600" />
-                    <span className="text-emerald-600 font-bold">Copied</span>
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    <span className="text-emerald-600 font-bold">Copied!</span>
                   </>
                 ) : (
                   <>
-                    <Copy className="w-3 h-3" />
+                    <Copy className="w-3.5 h-3.5" />
                     <span>Copy Number</span>
                   </>
                 )}

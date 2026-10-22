@@ -70,7 +70,7 @@ export function HeroSection() {
               </h2>
 
               <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed max-w-md">
-                Organized by Computer Cell (CC) at Civil Lawn, UET Peshawar. Celebrating the graduating seniors and warmly welcoming our new batch with royal dinner, live concert, and traditional Attan.
+                Organized by Computer Cell (CC) at UET Civil Lawn. Celebrating the graduating seniors and warmly welcoming our new batch with royal dinner, live concert, and traditional Attan.
               </p>
 
               <div className="pt-1 flex flex-wrap items-center gap-2.5">
@@ -99,7 +99,7 @@ export function HeroSection() {
           <div className="relative z-10 pt-4 border-t border-white/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div>
               <span className="text-[10px] font-mono tracking-widest uppercase text-slate-300 block mb-1.5">
-                TIME REMAINING UNTIL GATES OPEN AT CIVIL LAWN
+                TIME REMAINING UNTIL GATES OPEN AT UET CIVIL LAWN
               </span>
               <CountdownTimer targetDate={EVENT_CONFIG.countdownTarget} />
             </div>

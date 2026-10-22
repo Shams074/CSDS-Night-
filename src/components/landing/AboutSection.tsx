@@ -46,7 +46,7 @@ export function AboutSection() {
             </p>
 
             <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed font-body font-normal">
-              Held under the open evening skies at Civil Lawn, UET Peshawar on <strong>November 12</strong>, this event unites freshers and graduating seniors for an authentic Peshawari dawat feast, live acoustic rubab, and the legendary Attan circle.
+              Held under the open evening skies at UET Civil Lawn on <strong>November 12</strong>, this event unites freshers and graduating seniors for an authentic Peshawari dawat feast, live acoustic rubab, and the legendary Attan circle.
             </p>
 
             {/* Feature Badges in 2x2 grid */}
@@ -55,10 +55,10 @@ export function AboutSection() {
                 <Coffee className="w-4 h-4 text-[#D4A03D] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="font-display font-bold text-xs uppercase text-[#0B253A]">
-                    100% Alcohol-Free
+                    Peshawari Kahwa Bar
                   </h4>
                   <p className="text-[11px] text-[#64748B] mt-0.5">
-                    Traditional Peshawari kahwa bar, spiced doodh patti & mocktails.
+                    Continuous hot green tea with cardamom, rich doodh patti chai & drinks.
                   </p>
                 </div>
               </div>
@@ -107,7 +107,7 @@ export function AboutSection() {
                 href="/register"
                 icon={<ArrowUpRight className="w-3.5 h-3.5" />}
               >
-                Register For Civil Lawn Pass
+                Register For UET Civil Lawn Pass
               </PillButton>
             </div>
           </div>

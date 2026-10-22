@@ -19,7 +19,7 @@ export function ScheduleSection() {
             pre="EVENING"
             accent="SCHEDULE"
             post="& PHASES"
-            subtitle="Three distinct phases marking the grand arrival at Civil Lawn, the musical dawat, and the farewell ceremony."
+            subtitle="Three distinct phases marking the grand arrival at UET Civil Lawn, the musical dawat, and the farewell ceremony."
             className="mb-0 sm:mb-0"
           />
 
@@ -98,7 +98,7 @@ export function ScheduleSection() {
                   [ OFFICIAL PROGRAMME ]
                 </span>
                 <span className="text-xs text-[#64748B] font-mono">
-                  {EVENT_CONFIG.date} • Civil Lawn
+                  {EVENT_CONFIG.date} • UET Civil Lawn
                 </span>
               </div>
 

@@ -14,7 +14,7 @@ export function HighlightsSection() {
           pre="HIGHLIGHTS OF THE"
           accent="NIGHT"
           post=""
-          subtitle="Explore the culinary feasts, live performances, and departmental ceremonies designed by Computer Cell (CC) for an unforgettable evening at Civil Lawn."
+          subtitle="Explore the culinary feasts, live performances, and departmental ceremonies designed by Computer Cell (CC) for an unforgettable evening at UET Civil Lawn."
         />
 
         {/* 6 Numbered Editorial Cards Grid */}

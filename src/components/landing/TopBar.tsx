@@ -16,7 +16,7 @@ export function TopBar() {
     { label: "HIGHLIGHTS", href: "#highlights" },
     { label: "DETAILS", href: "#details" },
     { label: "SCHEDULE", href: "#schedule" },
-    { label: "PASS & FEE", href: "#fee" },
+    { label: "FEE & REGISTRATION", href: "#fee" },
     { label: "FAQ", href: "#faq" },
   ];
 
@@ -94,29 +94,10 @@ export function TopBar() {
 
         {/* Right Action Buttons */}
         <div className="flex items-center gap-2 sm:gap-3">
-          <PillButton
-            variant="gold"
-            size="sm"
-            href="/register"
-            icon={<ArrowUpRight className="w-3.5 h-3.5" />}
-            className="hidden sm:inline-flex"
-          >
-            Register Pass — Rs. 2,200
-          </PillButton>
-
-          {/* Quick Register on small screens */}
-          <Link
-            href="/register"
-            className="sm:hidden px-3 py-1.5 rounded-full bg-[#D4A03D] text-[#0B253A] font-display font-bold text-[11px] flex items-center gap-1 shadow-sm"
-          >
-            <span>Pass</span>
-            <ArrowUpRight className="w-3 h-3" />
-          </Link>
-
           {/* Admin link icon */}
           <Link
             href="/admin/login"
-            className="hidden md:flex p-1.5 rounded-full border border-[#E2E8F0] text-[#64748B] hover:text-[#0B253A] hover:border-[#CBD5E1] transition-colors"
+            className="flex p-1.5 rounded-full border border-[#E2E8F0] text-[#64748B] hover:text-[#0B253A] hover:border-[#CBD5E1] transition-colors"
             title="Admin Login"
           >
             <ShieldCheck className="w-4 h-4" />

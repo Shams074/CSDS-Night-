@@ -30,7 +30,7 @@ export function FeeSection() {
                 ONE PASS. ALL-INCLUSIVE CELEBRATION.
               </h3>
               <p className="text-xs text-slate-200 font-normal max-w-md">
-                Arranged by Computer Cell (CC) at Civil Lawn, UET Peshawar. Covers buffet dinner, concert access, Attan dance, crests & souvenirs.
+                Arranged by Computer Cell (CC) at UET Civil Lawn. Covers buffet dinner, concert access, Attan dance, crests & souvenirs.
               </p>
             </div>
           </div>
@@ -75,23 +75,25 @@ export function FeeSection() {
                 ))}
               </ul>
 
-              {/* Payment Methods Pill Badges */}
+              {/* Payment Method - 1 Account Only */}
               <div className="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] space-y-2">
                 <span className="text-[10px] font-mono text-[#64748B] uppercase tracking-widest block font-bold">
-                  Payment Accounts (Treasurer & President CC):
+                  Official Payment Account (Treasurer CC):
                 </span>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
-                  <div className="p-2.5 rounded-lg bg-white border border-[#E2E8F0]">
-                    <span className="font-bold text-[#0B253A] block text-xs">Meezan Bank</span>
-                    <span className="text-[10px] text-[#64748B] font-mono block">Direct Transfer</span>
-                  </div>
-                  <div className="p-2.5 rounded-lg bg-white border border-[#E2E8F0]">
-                    <span className="font-bold text-[#0B253A] block text-xs">Easypaisa</span>
-                    <span className="text-[10px] text-[#D4A03D] font-mono block font-bold">0345-9182736</span>
-                  </div>
-                  <div className="p-2.5 rounded-lg bg-white border border-[#E2E8F0]">
-                    <span className="font-bold text-[#0B253A] block text-xs">JazzCash</span>
-                    <span className="text-[10px] text-[#D4A03D] font-mono block font-bold">0301-8273945</span>
+                <div className="p-3 rounded-lg bg-white border border-[#E2E8F0] flex items-center justify-between">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-[#0B253A] text-xs">SadaPay</span>
+                      <span className="text-[10px] font-semibold text-[#D4A03D] bg-[#FEF9EE] px-2 py-0.5 rounded-full border border-[#D4A03D]/30">
+                        Treasurer CC
+                      </span>
+                    </div>
+                    <div className="font-mono font-bold text-sm text-[#0B253A] mt-1">
+                      03339729600
+                    </div>
+                    <span className="text-[11px] text-[#64748B] block mt-0.5">
+                      Abdul Mohaiman
+                    </span>
                   </div>
                 </div>
               </div>

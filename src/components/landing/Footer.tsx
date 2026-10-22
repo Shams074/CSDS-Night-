@@ -36,7 +36,7 @@ export function Footer() {
             </p>
 
             <div className="font-mono text-[11px] text-slate-400">
-              Civil Lawn, UET Peshawar • 12 November 2026 • 100% Alcohol-Free Student Event
+              UET Civil Lawn • 12 November 2026 • Computer Cell (CC), U.E.T. Peshawar
             </div>
           </div>
 
@@ -87,7 +87,7 @@ export function Footer() {
           <div className="flex items-center gap-5">
             <span className="hover:text-white cursor-pointer">Terms</span>
             <span className="hover:text-white cursor-pointer">Privacy</span>
-            <span className="text-[#D4A03D]">Civil Lawn, UET Peshawar</span>
+            <span className="text-[#D4A03D]">UET Civil Lawn</span>
           </div>
         </div>
       </div>

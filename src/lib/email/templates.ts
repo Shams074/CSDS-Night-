@@ -106,7 +106,7 @@ export async function getApprovedEmailContent(params: {
                         : ""
                     }
                     <p style="margin: 0; font-size: 11px; color: #64748B;">
-                      Show this 6-character Pass Code or QR code at Civil Lawn entrance
+                      Show this 6-character Pass Code or QR code at UET Civil Lawn entrance
                     </p>
                   </td>
                 </tr>
@@ -124,7 +124,7 @@ export async function getApprovedEmailContent(params: {
                 </tr>
                 <tr style="background-color: #F8FAFC;">
                   <td style="padding: 9px 14px; border-bottom: 1px solid #E2E8F0; color: #64748B; font-weight: 600;">Venue:</td>
-                  <td style="padding: 9px 14px; border-bottom: 1px solid #E2E8F0; color: #0B253A; font-weight: 700;">Civil Lawn, UET Peshawar</td>
+                  <td style="padding: 9px 14px; border-bottom: 1px solid #E2E8F0; color: #0B253A; font-weight: 700;">UET Civil Lawn</td>
                 </tr>
                 <tr>
                   <td style="padding: 9px 14px; border-bottom: 1px solid #E2E8F0; color: #64748B; font-weight: 600;">Organizer:</td>
@@ -143,7 +143,7 @@ export async function getApprovedEmailContent(params: {
               <!-- Notice Box -->
               <div style="background-color: #FFFBEB; border-left: 3px solid #D4A03D; border-radius: 6px; padding: 10px 14px; margin: 16px 0;">
                 <p style="margin: 0; font-size: 11px; line-height: 1.5; color: #92400E;">
-                  <strong>Important:</strong> Please bring your original <strong>CNIC</strong> (or Student Card) along with this pass on your phone. Admission is non-transferable and strictly checked at the entrance.
+                  <strong>Important:</strong> Please bring your original <strong>CNIC</strong> (or Student Card) along with this pass on your phone. Admission is non-transferable and strictly checked at the entrance gate.
                 </p>
               </div>
 
@@ -164,7 +164,7 @@ export async function getApprovedEmailContent(params: {
           <tr>
             <td style="background-color: #F8FAFC; padding: 16px 20px; text-align: center; border-top: 1px solid #E2E8F0; font-size: 11px; color: #64748B; line-height: 1.5;">
               <p style="margin: 0 0 3px 0; font-weight: 600; color: #0B253A;">Computer Cell (CC) • U.E.T. Peshawar</p>
-              <p style="margin: 0;">Venue: Civil Lawn • Event Date: 12 Nov 2026</p>
+              <p style="margin: 0;">Venue: UET Civil Lawn • Event Date: 12 Nov 2026</p>
             </td>
           </tr>
 
@@ -187,14 +187,14 @@ Your registration and payment of ${EVENT_CONFIG.fee.formatted} have been approve
 ENTRY PASS CODE: ${shortId}
 EVENT DATE: 12 Nov 2026 (Thursday)
 TIME: 06:00 PM onwards
-VENUE: Civil Lawn, UET Peshawar
+VENUE: UET Civil Lawn
 ORGANIZER: Computer Cell (CC), U.E.T. Peshawar
 REGISTERED CNIC: ${params.cnic}
 
 IMPORTANT:
-Please present this 6-character Pass Code (${shortId}) and your original CNIC or Student ID card at the Civil Lawn entrance gate.
+Please present this 6-character Pass Code (${shortId}) and your original CNIC or Student ID card at the UET Civil Lawn entrance gate.
 
-See you on 12 Nov at Civil Lawn!
+See you on 12 Nov at UET Civil Lawn!
 - Computer Cell (CC), U.E.T. Peshawar
   `;
 
@@ -242,7 +242,7 @@ export function getRejectionEmailContent(params: {
             <td style="padding: 24px;">
               <p style="font-size: 14px; font-weight: 700; color: #0B253A; margin: 0 0 10px 0;">Assalamu Alaikum ${params.name},</p>
               <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 14px 0;">
-                Thank you for submitting your registration for the CSDS Welcome & Farewell Night (12 Nov, Civil Lawn). Unfortunately, your submission could not be approved at this time:
+                Thank you for submitting your registration for the CSDS Welcome & Farewell Night (12 Nov, UET Civil Lawn). Unfortunately, your submission could not be approved at this time:
               </p>
               <div style="background-color: #FEF2F2; border-left: 3px solid #EF4444; padding: 12px 14px; margin: 14px 0; font-size: 12px; color: #991B1B; border-radius: 6px;">
                 <strong>Reason:</strong> ${reasonText}
@@ -327,7 +327,7 @@ export function getReceivedEmailContent(params: {
             <td style="padding: 24px;">
               <p style="font-size: 14px; font-weight: 700; color: #0B253A; margin: 0 0 10px 0;">Assalamu Alaikum ${params.name},</p>
               <p style="font-size: 13px; line-height: 1.6; color: #475569; margin: 0 0 12px 0;">
-                We have received your registration and payment proof for the <strong>CSDS Welcome & Farewell Night 2026</strong> (12 Nov, Civil Lawn).
+                We have received your registration and payment proof for the <strong>CSDS Welcome & Farewell Night 2026</strong> (12 Nov, UET Civil Lawn).
               </p>
               <div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px; margin: 14px 0; text-align: center;">
                 <span style="font-size: 10px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 1px;">Your Reference ID</span>
@@ -363,7 +363,7 @@ Assalamu Alaikum ${params.name},
 We have received your registration. The Computer Cell committee will verify your payment within 12-24 hours and send your official entry pass upon approval.
 
 Event Date: 12 Nov 2026
-Venue: Civil Lawn, UET Peshawar
+Venue: UET Civil Lawn
 - Computer Cell (CC), U.E.T. Peshawar
   `;
 

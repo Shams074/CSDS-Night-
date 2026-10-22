@@ -9,7 +9,7 @@ import { ArrowLeft } from "lucide-react";
 export const metadata: Metadata = {
   title: "Register Pass | Computer Cell CSDS Night 2026",
   description:
-    "Register for the CSDS Department Welcome Party & Farewell Night organized by Computer Cell (CC), U.E.T. Peshawar. Civil Lawn, 12 Nov. Rs. 2,200 per person.",
+    "Register for the CSDS Department Welcome Party & Farewell Night organized by Computer Cell (CC), U.E.T. Peshawar. UET Civil Lawn, 12 Nov. Rs. 2,200 per person.",
 };
 
 export default function RegisterPage() {
