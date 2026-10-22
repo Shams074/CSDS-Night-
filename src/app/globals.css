@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-forest: #0F3D2B;
+  --color-forest-dark: #09261B;
+  --color-forest-light: #18523C;
+  --color-sage: #A3B565;
+  --color-sage-light: #BDC987;
+  --color-sage-dark: #6D7C33;
+  --color-cream: #F1F0DC;
+  --color-cream-light: #FAF9F1;
+  --color-cream-dark: #E2E0C4;
+  --color-coral: #D94A3F;
+  --color-coral-hover: #C53B30;
+  --color-near-black: #111111;
+
+  --background: #F1F0DC;
+  --foreground: #111111;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F1F0DC;
+  color: #111111;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+/* Hard offset shadow utility classes */
+.shadow-hard-xs {
+  box-shadow: 2px 2px 0px #111111;
+}
+
+.shadow-hard-sm {
+  box-shadow: 3px 3px 0px #111111;
+}
+
+.shadow-hard {
+  box-shadow: 4px 4px 0px #111111;
+}
+
+.shadow-hard-lg {
+  box-shadow: 6px 6px 0px #111111;
+}
+
+.shadow-hard-coral {
+  box-shadow: 3px 3px 0px #D94A3F;
+}
+
+/* Islamic subtle dot lattice */
+.bg-islamic-pattern {
+  background-color: #F1F0DC;
+  background-image: radial-gradient(#0F3D2B 0.65px, transparent 0.65px), radial-gradient(#0F3D2B 0.65px, #F1F0DC 0.65px);
+  background-size: 26px 26px;
+  background-position: 0 0, 13px 13px;
+}
+
+/* Truck art border subtle accent */
+.border-truck-art {
+  border-image: repeating-linear-gradient(
+    45deg,
+    #D94A3F,
+    #D94A3F 10px,
+    #F1F0DC 10px,
+    #F1F0DC 15px,
+    #0F3D2B 15px,
+    #0F3D2B 25px,
+    #A3B565 25px,
+    #A3B565 35px
+  ) 4;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F0DC;
+}
+::-webkit-scrollbar-thumb {
+  background: #0F3D2B;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #18523C;
 }
