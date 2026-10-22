@@ -59,14 +59,14 @@ export const EVENT_CONFIG = {
   countdownTarget: "2026-11-14T18:00:00+05:00",
   seatCapacity: 350,
 
-  // 📸 CENTRAL PHOTO SLOTS (Easily swappable with your own images)
+  // 📸 CENTRAL PHOTO SLOTS (Easily swappable with your own images in public/images/)
   images: {
     // Hero main background (crowd, stage, or venue)
-    hero: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1920&q=85",
+    hero: "/images/hero.jpg",
     // About feature photo
-    about: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80",
+    about: "/images/about.jpg",
     // Registration fee split block photo (group / students / friends)
-    feeCard: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80",
+    feeCard: "/images/fee-group.jpg",
   },
 
   // Registration Fee & Financials
@@ -118,7 +118,7 @@ export const EVENT_CONFIG = {
       title: "ROYAL PESHAWARI DAWAT",
       subtitle: "Authentic Chapli Kebab, Namak Mandi Karahi, Dum Pukht & Kahwa",
       category: "food",
-      image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80",
+      image: "/images/highlight-food.jpg",
       badge: "Pure Feast",
     },
     {
@@ -127,7 +127,7 @@ export const EVENT_CONFIG = {
       title: "LIVE CONCERT & RUBAB",
       subtitle: "Soulful Pashto folk strings, contemporary rock & Urdu acoustic night",
       category: "music",
-      image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
+      image: "/images/highlight-music.jpg",
       badge: "Live Band",
     },
     {
@@ -136,7 +136,7 @@ export const EVENT_CONFIG = {
       title: "TRADITIONAL ATTAN CIRCLE",
       subtitle: "High-energy ceremonial circle dance uniting every batch in synchronized rhythm",
       category: "culture",
-      image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80",
+      image: "/images/highlight-culture.jpg",
       badge: "Heritage",
     },
     {
@@ -145,7 +145,7 @@ export const EVENT_CONFIG = {
       title: "DEPARTMENT ROAST & GAMES",
       subtitle: "Trivia battles, senior-junior showdowns, and live stage entertainment",
       category: "games",
-      image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80",
+      image: "/images/highlight-games.jpg",
       badge: "Fun & Roast",
     },
     {
@@ -154,7 +154,7 @@ export const EVENT_CONFIG = {
       title: "AWARDS & FAREWELL HONORS",
       subtitle: "Personalized senior crests, batch superlatives, and graduation tributes",
       category: "awards",
-      image: "https://images.unsplash.com/photo-1569974498991-d3c12a504f95?auto=format&fit=crop&w=800&q=80",
+      image: "/images/highlight-awards.jpg",
       badge: "Memorabilia",
     },
     {
@@ -163,7 +163,7 @@ export const EVENT_CONFIG = {
       title: "STUDIO PHOTO PAVILION",
       subtitle: "High-res instant portrait station with cultural pakols, turbans & props",
       category: "photo",
-      image: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=800&q=80",
+      image: "/images/highlight-booth.jpg",
       badge: "Memories",
     },
   ] as HighlightItem[],
@@ -174,19 +174,19 @@ export const EVENT_CONFIG = {
       {
         title: "Taza Chapli Kebab",
         description: "Peshawar's iconic fried beef kebabs flavored with crushed pomegranate, coriander, and heirloom tomatoes.",
-        image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80",
+        image: "/images/dawat-2.jpg",
         tag: "Specialty",
       },
       {
         title: "Namak Mandi Mutton Karahi",
         description: "Slow-simmered shinwari mutton karahi in natural lamb fat with black pepper and green chilies.",
-        image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
+        image: "/images/dawat-1.jpg",
         tag: "Shinwari",
       },
       {
         title: "Peshawari Kahwa & Doodh Patti",
         description: "Hot green tea brewed with green cardamom served with cardamom nuql, plus rich spiced milk chai.",
-        image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80",
+        image: "/images/dawat-3.jpg",
         tag: "Beverage",
       },
     ],
@@ -194,19 +194,19 @@ export const EVENT_CONFIG = {
       {
         title: "Classical Rubab Symphony",
         description: "Soul-stirring instrumental performance blending timeless Pakhtun melodies with acoustic strings.",
-        image: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=800&q=80",
+        image: "/images/music-1.jpg",
         tag: "Folk Strings",
       },
       {
         title: "Student Indie Band",
         description: "Live Urdu acoustic covers, rock medleys, and nostalgic campus songs by CSDS musicians.",
-        image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
+        image: "/images/music-2.jpg",
         tag: "Live Sets",
       },
       {
         title: "The Grand Attan",
         description: "The rhythmic ceremonial circle dance to thunderous Dhol beats that closes the night.",
-        image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
+        image: "/images/music-3.jpg",
         tag: "Cultural Peak",
       },
     ],
@@ -214,19 +214,19 @@ export const EVENT_CONFIG = {
       {
         title: "Senior-Junior Roast & Quiz",
         description: "Good-humored departmental stand-up, funny video montages, and rapid-fire quiz showdowns.",
-        image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80",
+        image: "/images/act-1.jpg",
         tag: "Comedy",
       },
       {
         title: "Superlative Batch Awards",
         description: "Shields honoring 'Most Likely to Deploy on Friday', 'Night Owl Hacker', and 'Class MVP'.",
-        image: "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=800&q=80",
+        image: "/images/act-2.jpg",
         tag: "Shields",
       },
       {
         title: "High-Res Photo Booth",
         description: "Studio portraits with traditional Peshawari turbans, pakols, and graduation frames.",
-        image: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=80",
+        image: "/images/act-3.jpg",
         tag: "Portraits",
       },
     ],
@@ -241,7 +241,7 @@ export const EVENT_CONFIG = {
       time: "06:00 PM – 07:30 PM",
       description: "Arrival, badge collection, welcome mocktails, and steaming Peshawari kahwa greeting.",
       category: "Reception",
-      image: "https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&w=800&q=80",
+      image: "/images/poster-1.jpg",
     },
     {
       id: "phase-2",
@@ -250,7 +250,7 @@ export const EVENT_CONFIG = {
       time: "07:30 PM – 09:30 PM",
       description: "Rubab symphonies, student live acoustic set, grand dinner buffet, and the traditional Attan circle.",
       category: "Main Stage",
-      image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80",
+      image: "/images/poster-2.jpg",
     },
     {
       id: "phase-3",
@@ -259,7 +259,7 @@ export const EVENT_CONFIG = {
       time: "09:30 PM – 11:30 PM",
       description: "Senior documentary montage, departmental shields presentation, faculty blessing, and finale send-off.",
       category: "Finale",
-      image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80",
+      image: "/images/poster-3.jpg",
     },
   ] as ScheduleItem[],
 
