@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
-import { CardContainer } from "@/components/ui/CardContainer";
 import { ShieldCheck, Lock, Mail, AlertCircle, Loader2, ArrowLeft, ArrowUpRight } from "lucide-react";
 
 export default function AdminLoginPage() {
@@ -49,119 +48,122 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-[#070707] text-[#EDEDED] font-body">
+    <div className="min-h-screen flex flex-col justify-between bg-slate-50 text-slate-800 font-sans">
       {/* Header */}
-      <header className="bg-[#0c0c0c] text-white px-4 sm:px-6 lg:px-10 py-3.5 border-b border-[#262626] flex items-center justify-between">
+      <header className="bg-[#0B253A] text-white px-4 sm:px-8 py-3 border-b border-slate-700/50 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#B4F23D]" />
-          <span className="font-display font-black text-sm tracking-widest uppercase text-white">
-            CSDS ADMIN <span className="text-[#B4F23D]">&apos;26</span>
-          </span>
+          <div className="w-7 h-7 rounded-lg bg-white p-1 flex items-center justify-center shrink-0">
+            <Image
+              src="/images/cc-logo.png"
+              alt="CC Logo"
+              width={22}
+              height={22}
+              className="object-contain"
+            />
+          </div>
+          <div>
+            <span className="font-bold text-xs tracking-wider uppercase text-white">
+              COMPUTER CELL <span className="text-[#D4A03D]">ADMIN</span>
+            </span>
+            <span className="text-[10px] text-slate-300 block font-normal">
+              CSDS Night &apos;26 • U.E.T. Peshawar
+            </span>
+          </div>
         </Link>
 
         <Link
           href="/"
-          className="text-xs font-display font-semibold tracking-wider uppercase text-gray-400 hover:text-white px-3 py-1.5 rounded-full border border-white/20 hover:border-white transition-colors flex items-center gap-1.5"
+          className="text-[11px] font-semibold text-slate-300 hover:text-white px-3 py-1 rounded-full border border-white/20 hover:border-white transition-colors flex items-center gap-1.5"
         >
-          <ArrowLeft className="w-3.5 h-3.5" />
+          <ArrowLeft className="w-3 h-3" />
           <span>Public Site</span>
         </Link>
       </header>
 
       {/* Main Login Card */}
       <main className="flex-grow flex items-center justify-center py-10 px-4">
-        <div className="w-full max-w-md">
-          <CardContainer variant="surface" className="p-6 sm:p-8 border border-[#262626]">
-            <div className="text-center mb-6">
-              <div className="w-12 h-12 rounded-full bg-[#1b2210] border border-[#B4F23D]/40 flex items-center justify-center mx-auto mb-3 text-[#B4F23D]">
-                <ShieldCheck className="w-6 h-6" />
+        <div className="w-full max-w-sm">
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-7">
+            <div className="text-center mb-5">
+              <div className="w-11 h-11 rounded-full bg-[#0B253A]/5 border border-[#0B253A]/15 flex items-center justify-center mx-auto mb-2.5 text-[#0B253A]">
+                <ShieldCheck className="w-5 h-5" />
               </div>
-              <h1 className="font-display font-black text-2xl text-white uppercase">
+              <h1 className="font-extrabold text-lg text-[#0B253A] tracking-tight uppercase">
                 ADMIN PORTAL
               </h1>
-              <p className="text-xs text-gray-400 mt-1">
-                Review registrations, verify payment screenshots, and dispatch passes.
+              <p className="text-[11px] text-slate-500 mt-0.5">
+                Review registrations, verify receipts, and send passes.
               </p>
             </div>
 
             {error && (
-              <div className="mb-5 p-3 rounded-xl bg-rose-950/40 border border-rose-800 text-rose-300 text-xs font-semibold flex items-start gap-2.5">
-                <AlertCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+              <div className="mb-4 p-2.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium flex items-start gap-2">
+                <AlertCircle className="w-3.5 h-3.5 text-rose-500 shrink-0 mt-0.5" />
                 <span>{error}</span>
               </div>
             )}
 
-            <form onSubmit={handleLogin} className="space-y-4">
+            <form onSubmit={handleLogin} className="space-y-3.5">
               <div>
-                <label className="block text-xs font-mono uppercase text-gray-300 mb-1">
-                  Admin Email / ID
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
+                  Admin Email
                 </label>
                 <div className="relative">
-                  <Mail className="w-4 h-4 text-gray-500 absolute left-3.5 top-3.5" />
+                  <Mail className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-3" />
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="admin@csds.uop.edu.pk"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[#2a2a2a] bg-[#161616] text-sm text-white focus:outline-none focus:border-[#B4F23D]"
+                    placeholder="admin@uetpeshawar.edu.pk"
+                    className="w-full pl-9 pr-3 py-2 rounded-lg border border-slate-200 bg-slate-50 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-[#0B253A] focus:border-[#0B253A]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-mono uppercase text-gray-300 mb-1">
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
                   Password
                 </label>
                 <div className="relative">
-                  <Lock className="w-4 h-4 text-gray-500 absolute left-3.5 top-3.5" />
+                  <Lock className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-3" />
                   <input
                     type="password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••••••"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[#2a2a2a] bg-[#161616] text-sm text-white focus:outline-none focus:border-[#B4F23D]"
+                    className="w-full pl-9 pr-3 py-2 rounded-lg border border-slate-200 bg-slate-50 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-[#0B253A] focus:border-[#0B253A]"
                   />
                 </div>
-              </div>
-
-              {/* Dev hint */}
-              <div className="p-3 rounded-xl bg-[#0c0c0c] border border-white/10 text-[11px] font-mono text-gray-400 leading-relaxed">
-                <span className="text-[#B4F23D] block font-bold mb-0.5">
-                  [ DEV PREVIEW ACCESS ]
-                </span>
-                <span>User: <strong>admin@csds.uop.edu.pk</strong></span>
-                <br />
-                <span>Pass: <strong>admin12345</strong></span>
               </div>
 
               <div className="pt-2">
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full inline-flex items-center justify-center font-display font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-full bg-[#B4F23D] text-black hover:bg-[#A3E635] transition-all cursor-pointer disabled:opacity-60"
+                  className="w-full inline-flex items-center justify-center font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-lg bg-[#0B253A] text-white hover:bg-[#123854] transition-all cursor-pointer disabled:opacity-60 shadow-sm"
                 >
                   {isLoading ? (
                     <>
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      <Loader2 className="w-3.5 h-3.5 mr-2 animate-spin text-[#D4A03D]" />
                       <span>Authenticating...</span>
                     </>
                   ) : (
                     <span className="flex items-center gap-1.5">
                       <span>Sign In to Dashboard</span>
-                      <ArrowUpRight className="w-4 h-4" />
+                      <ArrowUpRight className="w-3.5 h-3.5 text-[#D4A03D]" />
                     </span>
                   )}
                 </button>
               </div>
             </form>
-          </CardContainer>
+          </div>
         </div>
       </main>
 
-      <footer className="py-4 text-center text-xs font-mono text-gray-600">
-        CSDS Student Society • Peshawar, Pakistan
+      <footer className="py-4 text-center text-[11px] text-slate-400">
+        Computer Cell (CC) • U.E.T. Peshawar
       </footer>
     </div>
   );

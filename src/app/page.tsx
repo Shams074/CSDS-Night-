@@ -11,7 +11,7 @@ import { Footer } from "@/components/landing/Footer";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#070707] text-[#EDEDED] font-body selection:bg-[#B4F23D] selection:text-black">
+    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0B253A] font-body selection:bg-[#D4A03D] selection:text-white">
       {/* 1. Minimalist Top Navigation */}
       <TopBar />
 

@@ -25,7 +25,7 @@ async function dispatchEmail(params: {
   const resendApiKey = (process.env.RESEND_API_KEY || "").trim();
   const smtpUser = (process.env.SMTP_USER || "").trim();
   const smtpPass = (process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || "").trim();
-  const fromEmail = (process.env.RESEND_FROM_EMAIL || "CSDS Peshawar <onboarding@resend.dev>").trim();
+  const fromEmail = (process.env.RESEND_FROM_EMAIL || "Computer Cell UET <onboarding@resend.dev>").trim();
 
   // 1. Try SMTP / Gmail Transporter if configured
   if (smtpUser && smtpPass) {
@@ -41,7 +41,7 @@ async function dispatchEmail(params: {
       });
 
       const info = await transporter.sendMail({
-        from: process.env.SMTP_FROM || `CSDS Society <${smtpUser}>`,
+        from: process.env.SMTP_FROM || `Computer Cell (CC) UET Peshawar <${smtpUser}>`,
         to: params.to,
         subject: params.subject,
         html: params.html,

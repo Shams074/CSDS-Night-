@@ -43,21 +43,25 @@ export const EVENT_CONFIG = {
   // Core Event Details
   title: "CSDS Welcome & Farewell Night",
   year: "2026",
+  organizer: "Computer Cell (CC)",
+  organizerFull: "Computer Cell (CC), U.E.T. Peshawar",
+  university: "University of Engineering & Technology (UET), Peshawar",
   department: "Department of Computer Science & Data Science",
-  society: "CSDS Student Society",
-  tagline: "ONE NIGHT FOR ARTISTS, FRESHERS, SENIORS AND SOUND",
+  society: "Computer Cell (CC)",
+  logo: "/images/cc-logo.png",
+  tagline: "ARRANGED BY COMPUTER CELL (CC) • U.E.T. PESHAWAR",
   shortDescription:
-    "An exclusive annual celebration uniting graduating seniors and welcoming the new batch of CSDS under the starlit sky of Peshawar.",
+    "An exclusive annual celebration uniting graduating seniors and welcoming the freshers, proudly organized by Computer Cell (CC) at UET Peshawar.",
 
   // Date, Time & Venue
-  date: "November 14, 2026",
+  date: "November 12, 2026",
   time: "6:00 PM – 11:30 PM PKT",
   doorsOpen: "5:30 PM",
-  venue: "Grand Marquee, University Town",
-  venueAddress: "Old Jamrud Road, University Town, Peshawar, KPK",
+  venue: "Civil Lawn, UET Peshawar",
+  venueAddress: "University of Engineering and Technology, Peshawar, KPK",
   city: "Peshawar, Pakistan",
-  countdownTarget: "2026-11-14T18:00:00+05:00",
-  seatCapacity: 350,
+  countdownTarget: "2026-11-12T18:00:00+05:00",
+  seatCapacity: 400,
 
   // 📸 CENTRAL PHOTO SLOTS (Easily swappable with your own images in public/images/)
   images: {
@@ -79,20 +83,20 @@ export const EVENT_CONFIG = {
       {
         type: "Bank Transfer",
         bankName: "Meezan Bank Limited",
-        accountTitle: "CSDS STUDENT SOCIETY PESHAWAR",
+        accountTitle: "COMPUTER CELL UET PESHAWAR",
         accountNumber: "0234-0104889231",
         iban: "PK36MEZN0002340104889231",
         branch: "University Town Branch, Peshawar",
       },
       {
         type: "Easypaisa",
-        accountTitle: "Muhammad Hamza (Treasurer CSDS)",
+        accountTitle: "Muhammad Hamza (Treasurer CC)",
         accountNumber: "0345-9182736",
-        note: "Send payment with remark: 'CSDS-YourName'",
+        note: "Send payment with remark: 'CC-YourName'",
       },
       {
         type: "JazzCash",
-        accountTitle: "Zaryab Khan (President CSDS)",
+        accountTitle: "Zaryab Khan (President CC)",
         accountNumber: "0301-8273945",
         note: "Upload clear screenshot of the successful transaction SMS / receipt",
       },
@@ -106,8 +110,8 @@ export const EVENT_CONFIG = {
     ],
   },
 
-  // Dropdown lists
-  sections: ["A", "B", "C", "D"],
+  // Dropdown lists - Updated with A, B, C, D, E, F, AI, DS, Cyber, Other
+  sections: ["A", "B", "C", "D", "E", "F", "AI", "DS", "Cyber", "Other"],
   semesters: [1, 2, 3, 4, 5, 6, 7, 8],
 
   // Highlights Section (Numbered cards: [01], [02], [03]...)

@@ -3,7 +3,7 @@ import { clsx } from "clsx";
 
 interface CardContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  variant?: "surface" | "black" | "highlight";
+  variant?: "surface" | "navy" | "black" | "highlight" | "gold";
   className?: string;
 }
 
@@ -14,15 +14,17 @@ export function CardContainer({
   ...props
 }: CardContainerProps) {
   const variantStyles = {
-    surface: "bg-[#121212] border border-[#262626] text-[#EDEDED]",
-    black: "bg-[#070707] border border-[#1e1e1e] text-[#EDEDED]",
-    highlight: "bg-[#14180d] border border-[#B4F23D]/30 text-[#EDEDED]",
+    surface: "bg-white border border-[#E2E8F0] text-[#0B253A] shadow-sm",
+    navy: "bg-[#0B253A] border border-[#0B253A] text-white shadow-md",
+    black: "bg-[#071927] border border-[#0B253A] text-white",
+    highlight: "bg-[#FEF9EE] border border-[#D4A03D]/40 text-[#0B253A]",
+    gold: "bg-[#FEF9EE] border border-[#D4A03D]/40 text-[#0B253A]",
   };
 
   return (
     <div
       className={clsx(
-        "rounded-2xl sm:rounded-3xl p-5 sm:p-8 transition-all duration-200",
+        "rounded-2xl sm:rounded-3xl p-5 sm:p-7 transition-all duration-200",
         variantStyles[variant],
         className
       )}

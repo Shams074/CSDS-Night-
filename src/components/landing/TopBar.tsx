@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { PillButton } from "../ui/PillButton";
 import { Menu, X, ArrowUpRight, ShieldCheck } from "lucide-react";
 
@@ -10,7 +11,6 @@ export function TopBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Gallery section removed as requested
   const navLinks = [
     { label: "ABOUT", href: "#about" },
     { label: "HIGHLIGHTS", href: "#highlights" },
@@ -22,14 +22,14 @@ export function TopBar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+      setIsScrolled(window.scrollY > 20);
 
       const sections = ["home", "about", "highlights", "details", "schedule", "fee", "faq"];
       for (const section of sections.reverse()) {
         const el = document.getElementById(section);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 140) {
+          if (rect.top <= 120) {
             setActiveSection(section);
             break;
           }
@@ -45,31 +45,45 @@ export function TopBar() {
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-[#070707]/95 backdrop-blur-md border-b border-[#262626] py-3"
-          : "bg-[#070707] border-b border-[#1c1c1c] py-4"
+          ? "bg-white/95 backdrop-blur-md border-b border-[#E2E8F0] shadow-sm py-2.5"
+          : "bg-white border-b border-[#E2E8F0] py-3.5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Minimalist Logo */}
+        {/* Computer Cell Logo & Department Brand */}
         <Link href="#home" className="flex items-center gap-2.5 group">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#B4F23D] group-hover:scale-125 transition-transform" />
-          <span className="font-display font-black text-sm sm:text-base tracking-widest uppercase text-white group-hover:text-[#B4F23D] transition-colors">
-            CSDS NIGHT <span className="text-[#B4F23D]">&apos;26</span>
-          </span>
+          <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0">
+            <Image
+              src="/images/cc-logo.png"
+              alt="Computer Cell UET Peshawar Logo"
+              width={36}
+              height={36}
+              className="object-contain"
+              priority
+            />
+          </div>
+          <div className="flex flex-col">
+            <span className="font-display font-bold text-xs sm:text-sm tracking-wide uppercase text-[#0B253A] group-hover:text-[#D4A03D] transition-colors leading-tight">
+              CSDS NIGHT <span className="text-[#D4A03D]">&apos;26</span>
+            </span>
+            <span className="text-[10px] font-mono tracking-widest uppercase text-[#64748B] leading-none mt-0.5">
+              COMPUTER CELL • UET
+            </span>
+          </div>
         </Link>
 
-        {/* Minimalist Desktop Navigation Links (widely spaced uppercase) */}
-        <nav className="hidden lg:flex items-center space-x-7">
+        {/* Minimalist Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center space-x-6">
           {navLinks.map((link) => {
             const isActive = activeSection === link.href.replace("#", "");
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`font-display text-xs tracking-widest uppercase transition-colors py-1 ${
+                className={`font-display text-[11px] tracking-widest uppercase transition-colors py-1 ${
                   isActive
-                    ? "text-[#B4F23D] font-bold"
-                    : "text-gray-400 hover:text-white"
+                    ? "text-[#D4A03D] font-bold"
+                    : "text-[#475569] hover:text-[#0B253A]"
                 }`}
               >
                 {link.label}
@@ -81,7 +95,7 @@ export function TopBar() {
         {/* Right Action Buttons */}
         <div className="flex items-center gap-2 sm:gap-3">
           <PillButton
-            variant="outline"
+            variant="gold"
             size="sm"
             href="/register"
             icon={<ArrowUpRight className="w-3.5 h-3.5" />}
@@ -93,7 +107,7 @@ export function TopBar() {
           {/* Quick Register on small screens */}
           <Link
             href="/register"
-            className="sm:hidden px-3 py-1.5 rounded-full bg-[#B4F23D] text-black font-display font-bold text-xs flex items-center gap-1"
+            className="sm:hidden px-3 py-1.5 rounded-full bg-[#D4A03D] text-[#0B253A] font-display font-bold text-[11px] flex items-center gap-1 shadow-sm"
           >
             <span>Pass</span>
             <ArrowUpRight className="w-3 h-3" />
@@ -102,60 +116,57 @@ export function TopBar() {
           {/* Admin link icon */}
           <Link
             href="/admin/login"
-            className="hidden md:flex p-2 rounded-full border border-white/20 text-gray-400 hover:text-white hover:border-white/50 transition-colors"
+            className="hidden md:flex p-1.5 rounded-full border border-[#E2E8F0] text-[#64748B] hover:text-[#0B253A] hover:border-[#CBD5E1] transition-colors"
             title="Admin Login"
           >
             <ShieldCheck className="w-4 h-4" />
           </Link>
 
-          {/* Mobile hamburger button */}
+          {/* Mobile hamburger menu toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-full border border-white/20 text-white hover:border-[#B4F23D] transition-colors focus:outline-none"
+            className="lg:hidden p-2 rounded-lg text-[#0B253A] hover:bg-slate-100 transition-colors"
             aria-label="Toggle navigation menu"
           >
-            {mobileMenuOpen ? (
-              <X className="w-4 h-4 text-[#B4F23D]" />
-            ) : (
-              <Menu className="w-4 h-4" />
-            )}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Menu (Minimalist full-width overlay) */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0a0a0a] border-b border-[#262626] px-5 py-6 space-y-4 animate-in slide-in-from-top-3 duration-200">
-          <div className="space-y-3 pb-4 border-b border-[#1f1f1f]">
+        <div className="lg:hidden bg-white border-b border-[#E2E8F0] px-4 py-4 space-y-3 animate-in slide-in-from-top-2 duration-200">
+          <div className="grid grid-cols-2 gap-2 pb-2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block font-display text-sm font-semibold tracking-wider text-gray-300 hover:text-[#B4F23D] py-1.5 transition-colors"
+                className="font-display text-xs tracking-wider uppercase text-[#475569] hover:text-[#0B253A] hover:bg-slate-50 py-2 px-3 rounded-lg"
               >
                 {link.label}
               </Link>
             ))}
           </div>
 
-          <div className="pt-2 space-y-2">
+          <div className="pt-2 border-t border-[#E2E8F0] flex flex-col gap-2">
             <PillButton
-              variant="primary"
+              variant="gold"
               size="md"
               href="/register"
-              className="w-full"
-              onClick={() => setMobileMenuOpen(false)}
               icon={<ArrowUpRight className="w-4 h-4" />}
+              className="w-full justify-center"
+              onClick={() => setMobileMenuOpen(false)}
             >
-              Register Now — Rs. 2,200
+              Get Entry Pass (Rs. 2,200)
             </PillButton>
+
             <Link
               href="/admin/login"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-center text-xs text-gray-500 hover:text-gray-300 py-1"
+              className="text-center font-display text-xs text-[#64748B] hover:text-[#0B253A] py-1.5"
             >
-              Admin Dashboard Login
+              Administrator Login
             </Link>
           </div>
         </div>

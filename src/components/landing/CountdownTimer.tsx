@@ -48,8 +48,8 @@ export function CountdownTimer({ targetDate }: CountdownTimerProps) {
 
   if (!isMounted) {
     return (
-      <div className="flex items-center gap-2 sm:gap-3 opacity-0">
-        <div className="w-14 h-14 bg-[#121212] rounded-xl" />
+      <div className="flex items-center gap-2 opacity-0">
+        <div className="w-12 h-12 bg-white rounded-xl" />
       </div>
     );
   }
@@ -62,21 +62,21 @@ export function CountdownTimer({ targetDate }: CountdownTimerProps) {
   ];
 
   return (
-    <div className="flex items-center gap-2 sm:gap-3" suppressHydrationWarning>
+    <div className="flex items-center gap-1.5 sm:gap-2.5" suppressHydrationWarning>
       {units.map((unit, index) => (
         <React.Fragment key={unit.label}>
           <div className="flex flex-col items-center">
-            <div className="w-13 h-13 sm:w-16 sm:h-16 bg-[#121212]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-[#2a2a2a] flex items-center justify-center">
-              <span className="font-display font-black text-xl sm:text-2xl text-[#B4F23D]">
+            <div className="w-11 h-11 sm:w-13 sm:h-13 bg-white/90 backdrop-blur-md rounded-xl border border-[#E2E8F0] shadow-sm flex items-center justify-center">
+              <span className="font-display font-bold text-base sm:text-lg text-[#0B253A]">
                 {String(unit.value).padStart(2, "0")}
               </span>
             </div>
-            <span className="text-[9px] sm:text-[10px] font-mono font-semibold tracking-widest text-gray-400 mt-1 uppercase">
+            <span className="text-[9px] font-mono font-semibold tracking-wider text-[#64748B] mt-1 uppercase">
               {unit.label}
             </span>
           </div>
           {index < units.length - 1 && (
-            <span className="font-mono text-gray-600 text-lg sm:text-xl font-bold -mt-4">
+            <span className="font-mono text-[#CBD5E1] text-sm sm:text-base font-bold -mt-3">
               :
             </span>
           )}

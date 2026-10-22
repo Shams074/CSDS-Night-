@@ -10,6 +10,7 @@ import {
   registrationFormSchema,
   RegistrationFormInput,
 } from "@/lib/validation/registrationSchema";
+import { formatShortId } from "@/lib/id";
 import { PillButton } from "../ui/PillButton";
 import { CardContainer } from "../ui/CardContainer";
 import { EVENT_CONFIG } from "@/config/event";
@@ -50,7 +51,6 @@ export function RegistrationForm() {
     register,
     handleSubmit,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<RegistrationFormInput>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -99,32 +99,39 @@ export function RegistrationForm() {
       return;
     }
 
-    const validMimes = ["image/jpeg", "image/png", "image/webp"];
-    if (!validMimes.includes(file.type)) {
-      setFileError("Only JPG, PNG, and WebP images are allowed.");
+    const validTypes = ["image/jpeg", "image/png", "image/webp"];
+    if (!validTypes.includes(file.type)) {
+      setFileError("Please upload an image in JPG, PNG, or WebP format.");
       return;
     }
 
     setScreenshotFile(file);
     const reader = new FileReader();
-    reader.onload = () => {
+    reader.onloadend = () => {
       setScreenshotPreview(reader.result as string);
     };
     reader.readAsDataURL(file);
   };
 
-  const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
+    e.stopPropagation();
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       handleFileSelect(e.dataTransfer.files[0]);
     }
   };
 
-  const removeScreenshot = () => {
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const removeFile = () => {
     setScreenshotFile(null);
     setScreenshotPreview(null);
-    setFileError(null);
-    if (fileInputRef.current) fileInputRef.current.value = "";
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   };
 
   const onSubmit = async (data: RegistrationFormInput) => {
@@ -170,10 +177,10 @@ export function RegistrationForm() {
 
       try {
         confetti({
-          particleCount: 100,
-          spread: 70,
+          particleCount: 80,
+          spread: 60,
           origin: { y: 0.6 },
-          colors: ["#B4F23D", "#FFFFFF", "#111111"],
+          colors: ["#0B253A", "#D4A03D", "#CBD5E1"],
         });
       } catch {
         // Confetti non-critical
@@ -188,73 +195,70 @@ export function RegistrationForm() {
 
   // SUCCESS SCREEN
   if (isSuccess && submittedData) {
+    const shortCode = formatShortId(submittedData.registrationId);
+
     return (
-      <div className="max-w-2xl mx-auto py-8 sm:py-12 px-4 animate-in zoom-in-95 duration-200">
-        <CardContainer variant="surface" className="text-center p-6 sm:p-10 border border-[#262626]">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#1b2210] border border-[#B4F23D] flex items-center justify-center mx-auto mb-5 text-[#B4F23D]">
-            <CheckCircle2 className="w-10 h-10 stroke-[2.5]" />
+      <div className="max-w-xl mx-auto py-6 sm:py-10 px-4 animate-in zoom-in-95 duration-200">
+        <CardContainer variant="surface" className="text-center p-6 sm:p-8 border border-[#E2E8F0] shadow-md">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#FEF9EE] border border-[#D4A03D] flex items-center justify-center mx-auto mb-4 text-[#D4A03D]">
+            <CheckCircle2 className="w-8 h-8 stroke-[2.5]" />
           </div>
 
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#B4F23D] bg-[#14180d] px-3 py-1 rounded-full border border-[#B4F23D]/30 inline-block mb-3">
+          <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-[#0B253A] bg-[#FEF9EE] px-3 py-1 rounded-full border border-[#D4A03D]/40 inline-block mb-2.5">
             [ REGISTRATION RECEIVED ]
           </span>
 
-          <h2 className="font-display font-black text-2xl sm:text-4xl text-white uppercase leading-tight">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#0B253A] uppercase leading-tight">
             YOU&apos;RE ON THE LIST.
           </h2>
 
-          <p className="mt-3 text-xs sm:text-sm text-gray-300 max-w-lg mx-auto font-normal leading-relaxed">
-            We received your registration and proof of payment. The CSDS committee will verify your submission within <strong>12–24 hours</strong>.
+          <p className="mt-2 text-xs sm:text-sm text-[#475569] max-w-md mx-auto font-normal leading-relaxed">
+            We received your registration and payment proof. Computer Cell (CC) will verify your submission within <strong>12–24 hours</strong>.
           </p>
 
-          {/* Reference Card */}
-          <div className="my-6 p-5 rounded-2xl bg-[#0c0c0c] border border-[#262626] text-left max-w-md mx-auto space-y-2.5 font-mono text-xs">
-            <div className="flex justify-between items-center pb-2 border-b border-white/10">
-              <span className="text-gray-500 uppercase tracking-wider">
-                Registration ID:
+          {/* Reference Card with 6-char Short ID */}
+          <div className="my-5 p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] text-left max-w-sm mx-auto space-y-2 font-mono text-xs">
+            <div className="flex justify-between items-center pb-2 border-b border-[#E2E8F0]">
+              <span className="text-[#64748B] uppercase tracking-wider text-[11px]">
+                Pass ID (6-Char):
               </span>
-              <span className="font-bold text-[#B4F23D]">
-                {submittedData.registrationId}
+              <span className="font-bold text-base text-[#D4A03D] bg-white px-2 py-0.5 rounded border border-[#E2E8F0]">
+                {shortCode}
               </span>
             </div>
             <div className="flex justify-between items-center text-xs">
-              <span className="text-gray-400">Student Name:</span>
-              <span className="font-semibold text-white">{submittedData.name}</span>
+              <span className="text-[#64748B]">Name:</span>
+              <span className="font-bold text-[#0B253A]">{submittedData.name}</span>
             </div>
             <div className="flex justify-between items-center text-xs">
-              <span className="text-gray-400">Email Address:</span>
-              <span className="font-semibold text-white">{submittedData.email}</span>
+              <span className="text-[#64748B]">CNIC:</span>
+              <span className="text-[#0B253A]">{submittedData.cnic}</span>
             </div>
             <div className="flex justify-between items-center text-xs">
-              <span className="text-gray-400">CNIC:</span>
-              <span className="font-semibold text-white">{submittedData.cnic}</span>
-            </div>
-            <div className="flex justify-between items-center text-xs pt-1">
-              <span className="text-gray-400">Status:</span>
-              <span className="font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-full border border-amber-400/30">
-                Pending Verification
-              </span>
+              <span className="text-[#64748B]">Venue & Date:</span>
+              <span className="text-[#0B253A]">Civil Lawn • 12 Nov</span>
             </div>
           </div>
 
-          <div className="bg-[#14180d] p-4 rounded-xl border border-[#B4F23D]/30 max-w-md mx-auto text-xs text-gray-300 leading-relaxed mb-6">
-            <strong>Next Step:</strong> Your official entry pass with QR code will be emailed to <strong>{submittedData.email}</strong>. Bring your original CNIC to the venue.
-          </div>
+          <p className="text-xs text-[#64748B] mb-5">
+            An email with your official entry ticket and QR code will be sent to <strong>{submittedData.email}</strong>.
+          </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <PillButton variant="primary" size="md" href="/">
-              Return to Event Homepage
+            <PillButton variant="primary" size="sm" href="/">
+              Return to Home
             </PillButton>
             <PillButton
               variant="outline"
-              size="md"
+              size="sm"
               onClick={() => {
                 setIsSuccess(false);
                 setSubmittedData(null);
-                removeScreenshot();
+                setScreenshotFile(null);
+                setScreenshotPreview(null);
               }}
             >
-              Submit Another
+              Register Another Student
             </PillButton>
           </div>
         </CardContainer>
@@ -262,67 +266,56 @@ export function RegistrationForm() {
     );
   }
 
-  // ACTIVE REGISTRATION FORM
   return (
-    <div className="max-w-3xl mx-auto py-4 sm:py-8 px-4">
-      {/* Top Breadcrumb */}
-      <div className="mb-6 flex items-center justify-between">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-1.5 text-xs font-display font-semibold tracking-wider uppercase text-gray-400 hover:text-[#B4F23D] transition-colors"
-        >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          <span>Back to Event Details</span>
-        </Link>
-        <span className="font-mono text-[11px] text-[#B4F23D] bg-[#14180d] px-2.5 py-0.5 rounded-full border border-[#B4F23D]/30 uppercase">
-          CSDS Verified Pass
-        </span>
-      </div>
-
-      {/* Standout Fee & Payment Instructions Banner (Right above the form) */}
-      <div className="mb-8 rounded-2xl sm:rounded-3xl bg-[#14180d] border border-[#B4F23D]/40 p-5 sm:p-7">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/10">
-          <div>
-            <span className="font-mono text-xs font-bold text-[#B4F23D] uppercase tracking-wider block">
-              REGISTRATION FEE
-            </span>
-            <div className="flex items-baseline gap-2 mt-0.5">
-              <span className="font-display font-black text-3xl sm:text-4xl text-white">
-                {EVENT_CONFIG.fee.formatted}
+    <div className="max-w-3xl mx-auto px-4 sm:px-6">
+      {/* Step 1: Payment Instructions Card */}
+      <div className="mb-6 p-5 sm:p-7 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E2E8F0] gap-3">
+          <div className="flex items-center gap-2.5">
+            <div className="relative w-7 h-7 shrink-0">
+              <Image
+                src="/images/cc-logo.png"
+                alt="CC Logo"
+                width={28}
+                height={28}
+                className="object-contain"
+              />
+            </div>
+            <div>
+              <span className="font-mono text-[10px] font-bold text-[#D4A03D] uppercase tracking-wider block">
+                STEP 1: TRANSFER FEE
               </span>
-              <span className="font-display text-xs text-gray-400 uppercase">
-                / {EVENT_CONFIG.fee.unit}
+              <span className="font-display font-bold text-sm uppercase text-[#0B253A]">
+                FEE: {EVENT_CONFIG.fee.formatted} / PERSON
               </span>
             </div>
           </div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1b2210] text-[#B4F23D] text-xs font-mono border border-[#B4F23D]/30 self-start sm:self-auto">
-            <Sparkles className="w-3 h-3" />
-            <span>All-Inclusive Pass</span>
-          </div>
+
+          <span className="text-[11px] font-mono text-[#0B253A] bg-[#FEF9EE] px-2.5 py-1 rounded-full border border-[#D4A03D]/40 font-semibold self-start sm:self-auto">
+            Civil Lawn • 12 Nov 2026
+          </span>
         </div>
 
-        <p className="text-xs text-gray-300 font-normal mt-3">
-          Transfer <strong>Rs. 2,200</strong> to any of the following official society accounts and upload your payment receipt below:
+        <p className="text-xs text-[#64748B] mt-3 leading-relaxed">
+          Transfer Rs. 2,200 via Bank, Easypaisa, or JazzCash to any account below and take a screenshot of the receipt:
         </p>
 
-        {/* Bank & Wallet Accounts */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
+        {/* Account Tiles */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
           {EVENT_CONFIG.fee.accounts.map((acc, idx) => (
             <div
-              key={idx}
-              className="bg-[#0c0c0c] rounded-xl border border-[#262626] p-3 text-xs flex flex-col justify-between"
+              key={acc.type}
+              className="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-mono text-[10px] font-bold text-[#B4F23D] uppercase">
-                    {acc.type}
-                  </span>
-                  <CreditCard className="w-3 h-3 text-gray-500" />
+                <div className="flex items-center justify-between text-[11px] font-mono font-bold text-[#64748B] mb-1">
+                  <span>{acc.type}</span>
+                  <CreditCard className="w-3 h-3 text-[#D4A03D]" />
                 </div>
-                <div className="font-mono font-bold text-white text-xs sm:text-sm">
+                <div className="font-mono font-bold text-[#0B253A] text-xs sm:text-sm">
                   {acc.accountNumber}
                 </div>
-                <div className="text-[11px] text-gray-400 mt-0.5 truncate">
+                <div className="text-[11px] text-[#64748B] mt-0.5 truncate">
                   {acc.accountTitle}
                 </div>
               </div>
@@ -330,17 +323,17 @@ export function RegistrationForm() {
               <button
                 type="button"
                 onClick={() => copyToClipboard(acc.accountNumber, `acc-${idx}`)}
-                className="mt-2 pt-2 border-t border-[#1f1f1f] flex items-center justify-center gap-1 text-[11px] font-mono text-[#B4F23D] hover:text-white transition-colors cursor-pointer"
+                className="mt-2 pt-2 border-t border-[#E2E8F0] flex items-center justify-center gap-1 text-[11px] font-mono text-[#0B253A] hover:text-[#D4A03D] transition-colors cursor-pointer"
               >
                 {copiedAccount === `acc-${idx}` ? (
                   <>
-                    <Check className="w-3 h-3 text-emerald-400" />
-                    <span className="text-emerald-400">Copied</span>
+                    <Check className="w-3 h-3 text-emerald-600" />
+                    <span className="text-emerald-600 font-bold">Copied</span>
                   </>
                 ) : (
                   <>
                     <Copy className="w-3 h-3" />
-                    <span>Copy Account</span>
+                    <span>Copy Number</span>
                   </>
                 )}
               </button>
@@ -350,28 +343,28 @@ export function RegistrationForm() {
       </div>
 
       {/* Main Form Container */}
-      <CardContainer variant="surface" className="p-6 sm:p-10 border border-[#262626]">
-        <div className="mb-6 sm:mb-8 pb-5 border-b border-[#262626]">
-          <span className="font-mono text-xs font-bold text-[#B4F23D] uppercase tracking-wider block mb-1">
+      <CardContainer variant="surface" className="p-5 sm:p-8 border border-[#E2E8F0] shadow-sm">
+        <div className="mb-5 pb-4 border-b border-[#E2E8F0]">
+          <span className="font-mono text-[11px] font-bold text-[#D4A03D] uppercase tracking-wider block mb-1">
             [ STEP 2: CREDENTIALS & PROOF ]
           </span>
-          <h1 className="font-display font-black text-2xl sm:text-3xl text-white uppercase">
-            REGISTER YOUR PASS
+          <h1 className="font-display font-bold text-xl sm:text-2xl text-[#0B253A] uppercase">
+            STUDENT REGISTRATION
           </h1>
-          <p className="text-xs sm:text-sm text-gray-400 mt-1">
-            Fill in your student credentials and attach your payment receipt screenshot.
+          <p className="text-xs text-[#64748B] mt-0.5">
+            Fill in your credentials and attach your payment receipt screenshot.
           </p>
         </div>
 
         {/* Global Server Error Banner */}
         {serverError && (
-          <div className="mb-6 p-4 rounded-xl bg-rose-950/40 border border-rose-800 text-rose-300 text-xs sm:text-sm flex items-start gap-3 animate-in fade-in">
-            <AlertCircle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+          <div className="mb-5 p-3.5 rounded-xl bg-rose-50 border border-rose-300 text-rose-700 text-xs flex items-start gap-2.5 animate-in fade-in">
+            <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
             <div className="font-medium leading-snug">{serverError}</div>
           </div>
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Honeypot Spam Guard */}
           <div className="hidden" aria-hidden="true">
             <input
@@ -384,223 +377,200 @@ export function RegistrationForm() {
 
           {/* Row 1: Full Name */}
           <div>
-            <label className="block text-xs font-mono uppercase text-gray-300 mb-1.5">
-              Full Name <span className="text-[#B4F23D]">*</span>
+            <label className="block text-xs font-mono uppercase text-[#0B253A] font-bold mb-1">
+              Full Name <span className="text-[#D4A03D]">*</span>
             </label>
             <input
               type="text"
-              placeholder="e.g. Ahmad Shah Afridi"
+              placeholder="e.g. Muhammad Zaryab Khan"
               {...register("name")}
-              className={`w-full px-4 py-3 rounded-xl border border-[#2a2a2a] bg-[#161616] text-sm text-white placeholder-gray-500 focus:bg-[#1a1a1a] focus:outline-none focus:border-[#B4F23D] transition-colors ${
-                errors.name ? "border-rose-600 ring-1 ring-rose-600" : ""
+              className={`w-full px-3.5 py-2.5 rounded-xl border border-[#CBD5E1] bg-[#F8FAFC] text-xs sm:text-sm text-[#0B253A] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#D4A03D] transition-colors ${
+                errors.name ? "border-rose-500 ring-1 ring-rose-500" : ""
               }`}
             />
             {errors.name && (
-              <p className="mt-1 text-xs text-rose-400">
-                {errors.name.message}
-              </p>
+              <p className="mt-1 text-xs text-rose-600">{errors.name.message}</p>
             )}
           </div>
 
-          {/* Row 2: Email Address */}
+          {/* Row 2: Email */}
           <div>
-            <label className="block text-xs font-mono uppercase text-gray-300 mb-1.5">
-              Email Address <span className="text-[#B4F23D]">*</span>
+            <label className="block text-xs font-mono uppercase text-[#0B253A] font-bold mb-1">
+              Email Address <span className="text-[#D4A03D]">*</span>
             </label>
             <input
               type="email"
-              placeholder="e.g. yourname@csds.uop.edu.pk or personal email"
+              placeholder="e.g. yourname@gmail.com"
               {...register("email")}
-              className={`w-full px-4 py-3 rounded-xl border border-[#2a2a2a] bg-[#161616] text-sm text-white placeholder-gray-500 focus:bg-[#1a1a1a] focus:outline-none focus:border-[#B4F23D] transition-colors ${
-                errors.email ? "border-rose-600 ring-1 ring-rose-600" : ""
+              className={`w-full px-3.5 py-2.5 rounded-xl border border-[#CBD5E1] bg-[#F8FAFC] text-xs sm:text-sm text-[#0B253A] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#D4A03D] transition-colors ${
+                errors.email ? "border-rose-500 ring-1 ring-rose-500" : ""
               }`}
             />
-            <span className="block mt-1 text-[11px] text-gray-500">
-              Your official digital entry pass and QR ticket will be sent to this email.
+            <span className="block mt-1 text-[11px] text-[#64748B]">
+              Your official digital entry ticket and QR code will be emailed here.
             </span>
             {errors.email && (
-              <p className="mt-1 text-xs text-rose-400">
-                {errors.email.message}
-              </p>
+              <p className="mt-1 text-xs text-rose-600">{errors.email.message}</p>
             )}
           </div>
 
           {/* Row 3: Section and Semester (Grid) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div>
-              <label className="block text-xs font-mono uppercase text-gray-300 mb-1.5">
-                Section <span className="text-[#B4F23D]">*</span>
+              <label className="block text-xs font-mono uppercase text-[#0B253A] font-bold mb-1">
+                Class Section <span className="text-[#D4A03D]">*</span>
               </label>
               <select
                 {...register("section")}
-                className="w-full px-4 py-3 rounded-xl border border-[#2a2a2a] bg-[#161616] text-sm text-white focus:outline-none focus:border-[#B4F23D] cursor-pointer"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-[#CBD5E1] bg-[#F8FAFC] text-xs sm:text-sm text-[#0B253A] focus:bg-white focus:outline-none focus:border-[#D4A03D] cursor-pointer"
               >
                 {EVENT_CONFIG.sections.map((sec) => (
-                  <option key={sec} value={sec} className="bg-[#161616]">
-                    Section {sec}
+                  <option key={sec} value={sec}>
+                    {sec.length === 1 ? `Section ${sec}` : sec}
                   </option>
                 ))}
               </select>
               {errors.section && (
-                <p className="mt-1 text-xs text-rose-400">
-                  {errors.section.message}
-                </p>
+                <p className="mt-1 text-xs text-rose-600">{errors.section.message}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-xs font-mono uppercase text-gray-300 mb-1.5">
-                Semester <span className="text-[#B4F23D]">*</span>
+              <label className="block text-xs font-mono uppercase text-[#0B253A] font-bold mb-1">
+                Semester <span className="text-[#D4A03D]">*</span>
               </label>
               <select
                 {...register("semester", { valueAsNumber: true })}
-                className="w-full px-4 py-3 rounded-xl border border-[#2a2a2a] bg-[#161616] text-sm text-white focus:outline-none focus:border-[#B4F23D] cursor-pointer"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-[#CBD5E1] bg-[#F8FAFC] text-xs sm:text-sm text-[#0B253A] focus:bg-white focus:outline-none focus:border-[#D4A03D] cursor-pointer"
               >
                 {EVENT_CONFIG.semesters.map((sem) => (
-                  <option key={sem} value={sem} className="bg-[#161616]">
-                    Semester {sem} {sem === 1 ? "(Freshers)" : sem === 8 ? "(Graduating Seniors)" : ""}
+                  <option key={sem} value={sem}>
+                    Semester {sem} {sem === 1 ? "(Freshers)" : sem === 8 ? "(Graduating)" : ""}
                   </option>
                 ))}
               </select>
               {errors.semester && (
-                <p className="mt-1 text-xs text-rose-400">
-                  {errors.semester.message}
-                </p>
+                <p className="mt-1 text-xs text-rose-600">{errors.semester.message}</p>
               )}
             </div>
           </div>
 
-          {/* Row 4: CNIC */}
+          {/* Row 4: CNIC Number */}
           <div>
-            <label className="block text-xs font-mono uppercase text-gray-300 mb-1.5">
-              CNIC Number (13 Digits) <span className="text-[#B4F23D]">*</span>
+            <label className="block text-xs font-mono uppercase text-[#0B253A] font-bold mb-1">
+              CNIC Number (13 digits) <span className="text-[#D4A03D]">*</span>
             </label>
             <input
               type="text"
-              placeholder="12345-1234567-1"
+              placeholder="17301-1234567-1"
               maxLength={15}
-              value={watch("cnic") || ""}
               onChange={handleCnicChange}
-              className={`w-full px-4 py-3 rounded-xl border border-[#2a2a2a] bg-[#161616] font-mono text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#B4F23D] ${
-                errors.cnic ? "border-rose-600 ring-1 ring-rose-600" : ""
+              className={`w-full px-3.5 py-2.5 rounded-xl border border-[#CBD5E1] bg-[#F8FAFC] text-xs sm:text-sm font-mono text-[#0B253A] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#D4A03D] transition-colors ${
+                errors.cnic ? "border-rose-500 ring-1 ring-rose-500" : ""
               }`}
             />
-            <span className="block mt-1 text-[11px] text-gray-500">
-              Kept confidential. Validated against your student card at entry gates.
+            <span className="block mt-1 text-[11px] text-[#64748B]">
+              Format: 12345-1234567-1. Each student may register only once.
             </span>
             {errors.cnic && (
-              <p className="mt-1 text-xs text-rose-400">
-                {errors.cnic.message}
-              </p>
+              <p className="mt-1 text-xs text-rose-600">{errors.cnic.message}</p>
             )}
           </div>
 
           {/* Row 5: Payment Screenshot Upload */}
           <div>
-            <label className="block text-xs font-mono uppercase text-gray-300 mb-1.5">
-              Payment Screenshot <span className="text-[#B4F23D]">*</span>
+            <label className="block text-xs font-mono uppercase text-[#0B253A] font-bold mb-1">
+              Payment Screenshot <span className="text-[#D4A03D]">*</span>
             </label>
-
-            <input
-              type="file"
-              ref={fileInputRef}
-              accept="image/jpeg,image/png,image/webp"
-              onChange={(e) => {
-                if (e.target.files && e.target.files[0]) {
-                  handleFileSelect(e.target.files[0]);
-                }
-              }}
-              className="hidden"
-            />
 
             {!screenshotPreview ? (
               <div
-                onDragOver={(e) => e.preventDefault()}
-                onDrop={onDrop}
+                onDrop={handleDrop}
+                onDragOver={handleDragOver}
                 onClick={() => fileInputRef.current?.click()}
-                className={`p-6 sm:p-8 rounded-2xl border border-dashed border-[#333333] hover:border-[#B4F23D] bg-[#161616] hover:bg-[#1a1a1a] cursor-pointer text-center transition-colors flex flex-col items-center justify-center ${
-                  fileError ? "border-rose-600 bg-rose-950/20" : ""
+                className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-colors bg-[#F8FAFC] hover:bg-slate-50 ${
+                  fileError
+                    ? "border-rose-500 bg-rose-50/50"
+                    : "border-[#CBD5E1] hover:border-[#D4A03D]"
                 }`}
               >
-                <div className="w-12 h-12 rounded-full bg-[#1b2210] border border-[#B4F23D]/40 flex items-center justify-center text-[#B4F23D] mb-3">
-                  <Upload className="w-5 h-5" />
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  className="hidden"
+                  onChange={(e) => {
+                    if (e.target.files && e.target.files[0]) {
+                      handleFileSelect(e.target.files[0]);
+                    }
+                  }}
+                />
+                <div className="w-10 h-10 rounded-full bg-[#FEF9EE] border border-[#D4A03D]/40 text-[#D4A03D] flex items-center justify-center mx-auto mb-2">
+                  <Upload className="w-4 h-4" />
                 </div>
-                <span className="font-display font-semibold text-xs sm:text-sm text-white uppercase tracking-wider">
-                  Click to upload or drag & drop receipt
-                </span>
-                <span className="font-mono text-[11px] text-gray-400 mt-1">
-                  JPG, PNG, or WebP (Max 5 MB)
-                </span>
+                <div className="font-display font-semibold text-xs text-[#0B253A]">
+                  Click to upload or drag receipt here
+                </div>
+                <div className="text-[11px] text-[#64748B] mt-0.5">
+                  JPG, PNG, or WebP (max 5 MB)
+                </div>
               </div>
             ) : (
-              <div className="relative rounded-2xl border border-[#333333] bg-[#161616] p-4 flex flex-col sm:flex-row items-center gap-4">
-                <div className="relative w-28 h-28 rounded-xl overflow-hidden border border-white/20 shrink-0 bg-black">
+              <div className="relative rounded-xl border border-[#CBD5E1] bg-[#F8FAFC] p-3 flex items-center gap-3">
+                <div className="relative w-16 h-16 rounded-lg overflow-hidden border border-[#CBD5E1] shrink-0 bg-white">
                   <Image
                     src={screenshotPreview}
-                    alt="Payment screenshot preview"
+                    alt="Receipt preview"
                     fill
                     className="object-cover"
                   />
                 </div>
-
-                <div className="flex-1 text-center sm:text-left min-w-0">
-                  <div className="flex items-center justify-center sm:justify-start gap-1.5 text-[#B4F23D] text-xs font-mono mb-1">
-                    <CheckCircle2 className="w-4 h-4" />
-                    <span>Receipt Attached</span>
-                  </div>
-                  <p className="text-xs text-white truncate">
+                <div className="min-w-0 flex-grow">
+                  <div className="font-medium text-xs text-[#0B253A] truncate">
                     {screenshotFile?.name}
-                  </p>
-                  <p className="text-[11px] font-mono text-gray-500 mt-0.5">
-                    {screenshotFile ? (screenshotFile.size / 1024 / 1024).toFixed(2) : 0} MB
-                  </p>
-
-                  <button
-                    type="button"
-                    onClick={removeScreenshot}
-                    className="mt-3 inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-mono text-rose-400 bg-rose-950/50 hover:bg-rose-900/60 border border-rose-800 transition-colors"
-                  >
-                    <X className="w-3.5 h-3.5" />
-                    <span>Change Screenshot</span>
-                  </button>
+                  </div>
+                  <div className="text-[11px] text-[#64748B]">
+                    {screenshotFile && (screenshotFile.size / 1024).toFixed(0)} KB • Ready
+                  </div>
                 </div>
+                <button
+                  type="button"
+                  onClick={removeFile}
+                  className="p-1.5 rounded-full hover:bg-slate-200 text-[#64748B] hover:text-[#0B253A] transition-colors"
+                  title="Remove image"
+                >
+                  <X className="w-4 h-4" />
+                </button>
               </div>
             )}
 
             {fileError && (
-              <p className="mt-1.5 text-xs text-rose-400">
-                {fileError}
-              </p>
+              <p className="mt-1 text-xs text-rose-600">{fileError}</p>
             )}
           </div>
 
-          {/* Privacy Note */}
-          <div className="p-3.5 rounded-xl bg-[#0c0c0c] border border-white/10 flex items-start gap-2.5 text-xs text-gray-400">
-            <ShieldCheck className="w-4 h-4 text-[#B4F23D] shrink-0 mt-0.5" />
-            <span>
-              Single registration per CNIC. Proofs are uploaded to private encrypted Supabase storage.
-            </span>
-          </div>
-
-          {/* Primary Submit Button */}
+          {/* Submit Button */}
           <div className="pt-2">
-            <button
+            <PillButton
               type="submit"
+              variant="gold"
+              size="md"
               disabled={isSubmitting}
-              className="w-full inline-flex items-center justify-center font-display font-black text-sm uppercase tracking-wider px-8 py-4 rounded-full bg-[#B4F23D] text-black hover:bg-[#A3E635] transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full justify-center"
+              icon={
+                isSubmitting ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <ArrowUpRight className="w-4 h-4" />
+                )
+              }
             >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  <span>Submitting Registration...</span>
-                </>
-              ) : (
-                <span className="flex items-center gap-2">
-                  <span>Complete Registration & Upload Receipt</span>
-                  <ArrowUpRight className="w-4 h-4 stroke-[3]" />
-                </span>
-              )}
-            </button>
+              {isSubmitting ? "Submitting Registration..." : "Complete Registration — Rs. 2,200"}
+            </PillButton>
+
+            <p className="text-center text-[11px] text-[#64748B] mt-2">
+              Protected by spam guard. Computer Cell committee verifies all submissions.
+            </p>
           </div>
         </form>
       </CardContainer>

@@ -7,53 +7,53 @@ import { EVENT_CONFIG } from "@/config/event";
 
 export function HighlightsSection() {
   return (
-    <section id="highlights" className="py-14 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-[#1a1a1a]">
+    <section id="highlights" className="py-10 sm:py-16 px-4 sm:px-6 lg:px-8 border-t border-[#E2E8F0] bg-[#F8FAFC]">
       <div className="max-w-7xl mx-auto">
         <SectionHeading
           tag="02 • CURATED EXPERIENCES"
           pre="HIGHLIGHTS OF THE"
           accent="NIGHT"
           post=""
-          subtitle="Explore the culinary feasts, live performances, and departmental ceremonies designed for an unforgettable evening in Peshawar."
+          subtitle="Explore the culinary feasts, live performances, and departmental ceremonies designed by Computer Cell (CC) for an unforgettable evening at Civil Lawn."
         />
 
-        {/* 6 Numbered Editorial Cards Grid: 1 col on mobile, 2 on tablet, 3 on desktop */}
+        {/* 6 Numbered Editorial Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {EVENT_CONFIG.highlights.map((item) => (
             <div
               key={item.id}
-              className="group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[#262626] bg-[#121212] hover:border-[#B4F23D]/50 transition-all duration-300 flex flex-col justify-between"
+              className="group relative rounded-2xl overflow-hidden border border-[#E2E8F0] bg-white hover:border-[#D4A03D] hover:shadow-md transition-all duration-300 flex flex-col justify-between"
             >
               {/* 📸 CARD IMAGE SLOT */}
-              <div className="relative h-60 sm:h-72 w-full overflow-hidden bg-black">
+              <div className="relative h-52 sm:h-60 w-full overflow-hidden bg-slate-100">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-70 group-hover:opacity-85"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-black/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/30" />
 
-                {/* Top Numbered Tag */}
-                <div className="absolute top-4 left-4 flex items-center gap-2">
-                  <span className="font-mono text-xs font-bold text-black bg-[#B4F23D] px-2.5 py-0.5 rounded-full">
+                {/* Top Numbered Tag & Category Badge */}
+                <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5">
+                  <span className="font-mono text-[11px] font-bold text-white bg-[#0B253A] px-2.5 py-0.5 rounded-full shadow-sm">
                     {item.number}
                   </span>
                   {item.badge && (
-                    <span className="font-mono text-[11px] text-white/80 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded-full border border-white/15">
+                    <span className="font-mono text-[10px] font-semibold text-[#0B253A] bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-full border border-[#E2E8F0] shadow-sm">
                       {item.badge}
                     </span>
                   )}
                 </div>
               </div>
 
-              {/* Bottom Text Content */}
-              <div className="p-5 sm:p-6 space-y-2">
-                <h3 className="font-display font-black text-lg sm:text-xl text-white group-hover:text-[#B4F23D] transition-colors uppercase leading-snug">
+              {/* Bottom Text Content with compact typography */}
+              <div className="p-4 sm:p-5 space-y-1.5">
+                <h3 className="font-display font-bold text-sm sm:text-base text-[#0B253A] group-hover:text-[#D4A03D] transition-colors uppercase leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-400 font-normal leading-relaxed">
+                <p className="text-xs text-[#64748B] font-normal leading-relaxed">
                   {item.subtitle}
                 </p>
               </div>

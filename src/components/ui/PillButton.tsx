@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 
 export interface PillButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "outline" | "secondary" | "limeOutline" | "ghost";
+  variant?: "primary" | "outline" | "secondary" | "gold" | "goldOutline" | "ghost";
   size?: "sm" | "md" | "lg";
   href?: string;
   external?: boolean;
@@ -25,25 +25,27 @@ export function PillButton({
   ...props
 }: PillButtonProps) {
   const baseClasses =
-    "inline-flex items-center justify-center font-display font-bold uppercase tracking-wider rounded-full transition-all duration-200 select-none text-center";
+    "inline-flex items-center justify-center font-display font-semibold uppercase tracking-wider rounded-full transition-all duration-200 select-none text-center cursor-pointer";
 
   const sizeClasses = {
-    sm: "px-4 py-1.5 text-xs gap-1.5",
-    md: "px-6 py-2.5 text-xs sm:text-sm gap-2",
-    lg: "px-8 py-3.5 text-sm sm:text-base gap-2.5",
+    sm: "px-3.5 py-1 text-[11px] gap-1.5",
+    md: "px-5 py-2 text-xs gap-2",
+    lg: "px-6 py-2.5 text-xs sm:text-sm gap-2",
   };
 
   const variantClasses = {
     primary:
-      "bg-[#B4F23D] text-black hover:bg-[#A3E635] shadow-lg hover:shadow-[#B4F23D]/20 active:scale-95",
+      "bg-[#0B253A] text-white hover:bg-[#163B59] active:scale-95 shadow-sm border border-[#0B253A]",
+    gold:
+      "bg-[#D4A03D] text-[#0B253A] hover:bg-[#BA8A2C] hover:text-white active:scale-95 shadow-sm font-bold",
     outline:
-      "bg-transparent text-white border border-white/30 hover:border-[#B4F23D] hover:text-[#B4F23D] hover:bg-[#B4F23D]/5 active:scale-95",
-    limeOutline:
-      "bg-transparent text-[#B4F23D] border border-[#B4F23D] hover:bg-[#B4F23D] hover:text-black active:scale-95",
+      "bg-transparent text-[#0B253A] border border-[#CBD5E1] hover:border-[#0B253A] hover:bg-slate-100 active:scale-95",
+    goldOutline:
+      "bg-transparent text-[#D4A03D] border border-[#D4A03D] hover:bg-[#D4A03D] hover:text-[#0B253A] active:scale-95",
     secondary:
-      "bg-white text-black hover:bg-gray-200 active:scale-95",
+      "bg-white text-[#0B253A] border border-[#E2E8F0] hover:bg-slate-50 hover:border-[#CBD5E1] active:scale-95 shadow-sm",
     ghost:
-      "bg-transparent text-white/80 hover:text-white hover:bg-white/5",
+      "bg-transparent text-[#475569] hover:text-[#0B253A] hover:bg-slate-100",
   };
 
   const combinedClasses = clsx(

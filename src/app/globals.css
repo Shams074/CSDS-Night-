@@ -4,31 +4,34 @@
   --font-display: var(--font-poppins), system-ui, sans-serif;
   --font-body: var(--font-mulish), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  --color-bg: #070707;
-  --color-surface: #121212;
-  --color-surface-hover: #1a1a1a;
-  --color-border: #262626;
-  --color-border-subtle: #1c1c1c;
+  /* Computer Cell (CC) UET Peshawar Palette */
+  --color-bg: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F1F5F9;
+  --color-border: #E2E8F0;
+  --color-border-subtle: #CBD5E1;
 
-  --color-lime: #B4F23D;
-  --color-lime-hover: #9EE026;
-  --color-lime-glow: rgba(180, 242, 61, 0.15);
+  --color-navy: #0B253A;
+  --color-navy-dark: #071927;
+  --color-navy-light: #163B59;
 
-  --color-coral: #D94A3F;
-  --color-forest: #0F3D2B;
+  --color-gold: #D4A03D;
+  --color-gold-hover: #BA8A2C;
+  --color-gold-light: #FEF9EE;
+  --color-gold-glow: rgba(212, 160, 61, 0.2);
 
-  --background: #070707;
-  --foreground: #EDEDED;
+  --background: #F8FAFC;
+  --foreground: #0B253A;
 }
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  background-color: #070707;
-  color: #EDEDED;
+  background-color: #F8FAFC;
+  color: #0B253A;
   font-family: var(--font-body);
   min-height: 100vh;
   overflow-x: hidden;
@@ -42,23 +45,31 @@ body {
   font-family: var(--font-body);
 }
 
-/* Subtle glow effects */
-.glow-lime-sm {
-  box-shadow: 0 0 15px rgba(180, 242, 61, 0.2);
+/* Subtle gold glow */
+.glow-gold-sm {
+  box-shadow: 0 0 15px rgba(212, 160, 61, 0.25);
 }
 
-.glow-lime {
-  box-shadow: 0 0 25px rgba(180, 242, 61, 0.35);
+.glow-gold {
+  box-shadow: 0 0 25px rgba(212, 160, 61, 0.4);
 }
 
 /* Minimalist border shadows */
 .shadow-minimal {
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 20px -2px rgba(11, 37, 58, 0.08);
 }
 
-/* Hard offset shadow adapted for dark theme */
-.shadow-hard-dark {
-  box-shadow: 3px 3px 0px #B4F23D;
+.shadow-card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+}
+
+/* Hard offset shadows in CC navy and gold */
+.shadow-hard-navy {
+  box-shadow: 3px 3px 0px #0B253A;
+}
+
+.shadow-hard-gold {
+  box-shadow: 3px 3px 0px #D4A03D;
 }
 
 /* Minimal scrollbar */
@@ -66,12 +77,12 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #070707;
+  background: #F8FAFC;
 }
 ::-webkit-scrollbar-thumb {
-  background: #262626;
+  background: #CBD5E1;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B4F23D;
+  background: #D4A03D;
 }

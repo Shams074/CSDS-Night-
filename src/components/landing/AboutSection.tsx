@@ -6,96 +6,95 @@ import { Coffee, Music, Award, ShieldCheck, ArrowUpRight } from "lucide-react";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#1a1a1a]">
+    <section id="about" className="py-10 sm:py-16 px-4 sm:px-6 lg:px-8 border-t border-[#E2E8F0] bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
-          {/* Left Column: 📸 PHOTO SLOT (matching reference image bottom layout) */}
+          {/* Left Column: 📸 PHOTO SLOT */}
           <div className="lg:col-span-6 order-2 lg:order-1">
-            <div className="relative h-[340px] sm:h-[420px] md:h-[480px] w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-[#262626] bg-[#121212] group">
+            <div className="relative h-[320px] sm:h-[380px] md:h-[420px] w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-[#E2E8F0] bg-[#F1F5F9] group shadow-sm">
               <Image
                 src={EVENT_CONFIG.images.about}
                 alt="CSDS Department Gathering"
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B253A]/80 via-transparent to-transparent" />
 
               {/* Minimal floating caption */}
-              <div className="absolute bottom-5 left-5 right-5 text-xs text-gray-300 font-mono">
-                <span className="text-[#B4F23D] font-bold block mb-1">
+              <div className="absolute bottom-4 left-4 right-4 text-xs text-slate-200 font-mono">
+                <span className="text-[#D4A03D] font-bold block text-[11px] mb-0.5">
                   [ PHOTO SLOT: BATCH CELEBRATION ]
                 </span>
-                <span>Swap this image anytime in src/config/event.ts</span>
+                <span className="text-[11px]">Computer Cell (CC) • UET Peshawar</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Editorial Typography matching reference layout */}
-          <div className="lg:col-span-6 order-1 lg:order-2 space-y-6">
-            <div className="font-mono text-xs font-semibold text-[#B4F23D] tracking-widest uppercase">
-              [ 01 • THE VISION ]
+          {/* Right Column: Editorial Typography */}
+          <div className="lg:col-span-6 order-1 lg:order-2 space-y-4 sm:space-y-5">
+            <div className="font-mono text-[11px] font-bold text-[#D4A03D] tracking-widest uppercase">
+              [ 01 • ORGANIZED BY COMPUTER CELL (CC) ]
             </div>
 
-            <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-white tracking-tight uppercase leading-tight">
-              THE ROOM COMES FIRST — THEN THE CELEBRATION.
+            <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-[#0B253A] tracking-tight uppercase leading-snug">
+              TRADITION, BROTHERHOOD & ACADEMIC EXCELLENCE.
             </h2>
 
-            <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-body font-normal">
-              Every year, the Department of Computer Science & Data Science steps
-              away from compilers, debuggers, and deadlines to celebrate two milestone moments: welcoming the new batch of innovators and sending off our graduating seniors with honor.
+            <p className="text-xs sm:text-sm text-[#475569] leading-relaxed font-body font-normal">
+              Organized proudly by the <strong>Computer Cell (CC)</strong> at U.E.T. Peshawar, the Welcome & Farewell Night brings together students from sections A, B, C, D, E, F, Artificial Intelligence, Data Science, Cyber Security, and allied disciplines.
             </p>
 
-            <p className="text-sm sm:text-base text-gray-400 leading-relaxed font-body font-normal">
-              Held in the heart of Peshawar with centuries of Pakhtun hospitality, this night brings together students across all semesters for an alcohol-free, culture-infused evening of music, dining, and memories.
+            <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed font-body font-normal">
+              Held under the open evening skies at Civil Lawn, UET Peshawar on <strong>November 12</strong>, this event unites freshers and graduating seniors for an authentic Peshawari dawat feast, live acoustic rubab, and the legendary Attan circle.
             </p>
 
             {/* Feature Badges in 2x2 grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              <div className="p-3.5 rounded-xl bg-[#121212] border border-[#262626] flex items-start gap-3">
-                <Coffee className="w-5 h-5 text-[#B4F23D] shrink-0 mt-0.5" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+              <div className="p-3 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] flex items-start gap-2.5">
+                <Coffee className="w-4 h-4 text-[#D4A03D] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-display font-bold text-xs uppercase text-white">
+                  <h4 className="font-display font-bold text-xs uppercase text-[#0B253A]">
                     100% Alcohol-Free
                   </h4>
-                  <p className="text-[11px] text-gray-400 mt-0.5">
-                    Authentic Peshawari kahwa bar, spiced chai, and mocktails.
+                  <p className="text-[11px] text-[#64748B] mt-0.5">
+                    Traditional Peshawari kahwa bar, spiced doodh patti & mocktails.
                   </p>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-[#121212] border border-[#262626] flex items-start gap-3">
-                <Music className="w-5 h-5 text-[#B4F23D] shrink-0 mt-0.5" />
+              <div className="p-3 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] flex items-start gap-2.5">
+                <Music className="w-4 h-4 text-[#D4A03D] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-display font-bold text-xs uppercase text-white">
+                  <h4 className="font-display font-bold text-xs uppercase text-[#0B253A]">
                     Live Folk Rubab
                   </h4>
-                  <p className="text-[11px] text-gray-400 mt-0.5">
-                    Traditional Pashto strings & student indie band performances.
+                  <p className="text-[11px] text-[#64748B] mt-0.5">
+                    Pashto strings & contemporary student musical performances.
                   </p>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-[#121212] border border-[#262626] flex items-start gap-3">
-                <Award className="w-5 h-5 text-[#B4F23D] shrink-0 mt-0.5" />
+              <div className="p-3 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] flex items-start gap-2.5">
+                <Award className="w-4 h-4 text-[#D4A03D] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-display font-bold text-xs uppercase text-white">
+                  <h4 className="font-display font-bold text-xs uppercase text-[#0B253A]">
                     Farewell Honors
                   </h4>
-                  <p className="text-[11px] text-gray-400 mt-0.5">
-                    Department shields, batch titles, and senior tributes.
+                  <p className="text-[11px] text-[#64748B] mt-0.5">
+                    Department crests, senior titles, and graduation tributes.
                   </p>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-[#121212] border border-[#262626] flex items-start gap-3">
-                <ShieldCheck className="w-5 h-5 text-[#B4F23D] shrink-0 mt-0.5" />
+              <div className="p-3 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] flex items-start gap-2.5">
+                <ShieldCheck className="w-4 h-4 text-[#D4A03D] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-display font-bold text-xs uppercase text-white">
+                  <h4 className="font-display font-bold text-xs uppercase text-[#0B253A]">
                     All-Inclusive Pass
                   </h4>
-                  <p className="text-[11px] text-gray-400 mt-0.5">
-                    Rs. 2,200 covers dinner, concert, awards & photo prints.
+                  <p className="text-[11px] text-[#64748B] mt-0.5">
+                    Rs. 2,200 covers buffet dinner, concert entry & souvenirs.
                   </p>
                 </div>
               </div>
@@ -103,12 +102,12 @@ export function AboutSection() {
 
             <div className="pt-2">
               <PillButton
-                variant="outline"
+                variant="primary"
                 size="md"
                 href="/register"
-                icon={<ArrowUpRight className="w-4 h-4" />}
+                icon={<ArrowUpRight className="w-3.5 h-3.5" />}
               >
-                BOOK YOUR PASS NOW
+                Register For Civil Lawn Pass
               </PillButton>
             </div>
           </div>

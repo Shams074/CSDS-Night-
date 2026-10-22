@@ -17,17 +17,17 @@ const mulish = Mulish({
 });
 
 export const metadata: Metadata = {
-  title: "CSDS Welcome & Farewell Night 2026 | Peshawar",
+  title: "CSDS Welcome & Farewell Night 2026 | Computer Cell UET Peshawar",
   description:
-    "Official Welcome Party for Batch 2026 & Farewell Night for the Graduating Batch of Computer Science & Data Science Department, Peshawar.",
+    "Official Welcome Party & Farewell Night organized by Computer Cell (CC), U.E.T. Peshawar for Computer Science & Data Science Department.",
   keywords: [
     "CSDS",
-    "Peshawar",
+    "Computer Cell",
+    "UET Peshawar",
     "Welcome Party",
     "Farewell Night",
     "Computer Science",
     "Data Science",
-    "Registration",
   ],
 };
 
@@ -40,11 +40,11 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${poppins.variable} ${mulish.variable} scroll-smooth dark`}
+      className={`${poppins.variable} ${mulish.variable} scroll-smooth`}
     >
       <body
         suppressHydrationWarning
-        className="min-h-screen bg-[#070707] text-[#EDEDED] font-body antialiased selection:bg-[#B4F23D] selection:text-black"
+        className="min-h-screen bg-[#F8FAFC] text-[#0B253A] font-body antialiased selection:bg-[#D4A03D] selection:text-white"
       >
         {children}
       </body>

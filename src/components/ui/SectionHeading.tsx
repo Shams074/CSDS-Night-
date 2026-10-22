@@ -23,20 +23,20 @@ export function SectionHeading({
   return (
     <div
       className={clsx(
-        "mb-8 sm:mb-12",
-        align === "center" ? "text-center max-w-3xl mx-auto" : "text-left",
+        "mb-6 sm:mb-9",
+        align === "center" ? "text-center max-w-2xl mx-auto" : "text-left",
         className
       )}
     >
       {tag && (
-        <div className="font-mono text-xs font-semibold text-[#B4F23D] tracking-widest uppercase mb-2">
+        <div className="font-mono text-[11px] font-bold text-[#D4A03D] tracking-widest uppercase mb-1.5">
           {tag.startsWith("[") ? tag : `[ ${tag} ]`}
         </div>
       )}
 
-      <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-white uppercase">
+      <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl tracking-tight leading-tight text-[#0B253A] uppercase">
         {pre}{" "}
-        <span className="text-[#B4F23D] inline-block">
+        <span className="text-[#D4A03D] inline-block">
           {accent}
         </span>{" "}
         {post}
@@ -45,7 +45,7 @@ export function SectionHeading({
       {subtitle && (
         <p
           className={clsx(
-            "mt-3 sm:mt-4 text-sm sm:text-base text-gray-400 font-body font-normal leading-relaxed max-w-xl",
+            "mt-2 text-xs sm:text-sm text-[#475569] font-body font-normal leading-relaxed max-w-lg",
             align === "center" ? "mx-auto" : ""
           )}
         >

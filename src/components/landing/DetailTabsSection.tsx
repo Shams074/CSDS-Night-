@@ -20,9 +20,9 @@ export function DetailTabsSection() {
   const currentCards = EVENT_CONFIG.detailTabs[activeTab] || [];
 
   return (
-    <section id="details" className="py-14 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-[#1a1a1a]">
+    <section id="details" className="py-10 sm:py-16 px-4 sm:px-6 lg:px-8 border-t border-[#E2E8F0] bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4">
           <SectionHeading
             tag="03 • PROGRAMME ELEMENTS"
             pre="FEAST, MELODIES &"
@@ -33,7 +33,7 @@ export function DetailTabsSection() {
           />
 
           {/* Minimalist Switcher Pills */}
-          <div className="inline-flex p-1 rounded-full bg-[#121212] border border-[#262626] self-start md:self-auto shrink-0">
+          <div className="inline-flex p-1 rounded-full bg-[#F1F5F9] border border-[#E2E8F0] self-start md:self-auto shrink-0 shadow-inner">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
               const Icon = tab.icon;
@@ -41,10 +41,10 @@ export function DetailTabsSection() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-1.5 px-3.5 sm:px-5 py-2 rounded-full font-display text-xs font-bold tracking-wider uppercase transition-all duration-150 cursor-pointer ${
+                  className={`flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full font-display text-[11px] font-bold tracking-wider uppercase transition-all duration-150 cursor-pointer ${
                     isActive
-                      ? "bg-[#B4F23D] text-black shadow-sm"
-                      : "text-gray-400 hover:text-white"
+                      ? "bg-[#0B253A] text-white shadow-sm"
+                      : "text-[#64748B] hover:text-[#0B253A]"
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -60,31 +60,31 @@ export function DetailTabsSection() {
           {currentCards.map((card, idx) => (
             <div
               key={`${activeTab}-${idx}`}
-              className="group rounded-2xl sm:rounded-3xl overflow-hidden border border-[#262626] bg-[#121212] hover:border-[#B4F23D]/50 transition-all flex flex-col justify-between"
+              className="group rounded-2xl overflow-hidden border border-[#E2E8F0] bg-white hover:border-[#D4A03D] hover:shadow-md transition-all flex flex-col justify-between"
             >
               {/* Card Image */}
-              <div className="relative h-52 sm:h-60 w-full overflow-hidden bg-black">
+              <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100">
                 <Image
                   src={card.image}
                   alt={card.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-75 group-hover:opacity-90"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-black/20 to-transparent" />
-                <div className="absolute top-3.5 right-3.5">
-                  <span className="font-mono text-[10px] uppercase font-bold text-black bg-[#B4F23D] px-2.5 py-0.5 rounded-full">
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+                <div className="absolute top-3 right-3">
+                  <span className="font-mono text-[10px] uppercase font-bold text-[#0B253A] bg-[#D4A03D] px-2.5 py-0.5 rounded-full shadow-sm">
                     {card.tag}
                   </span>
                 </div>
               </div>
 
               {/* Card Description */}
-              <div className="p-5 sm:p-6 space-y-2">
-                <h4 className="font-display font-bold text-lg text-white group-hover:text-[#B4F23D] transition-colors leading-snug">
+              <div className="p-4 sm:p-5 space-y-1.5">
+                <h4 className="font-display font-bold text-sm sm:text-base text-[#0B253A] group-hover:text-[#D4A03D] transition-colors leading-snug">
                   {card.title}
                 </h4>
-                <p className="text-xs sm:text-sm text-gray-400 font-normal leading-relaxed">
+                <p className="text-xs text-[#64748B] font-normal leading-relaxed">
                   {card.description}
                 </p>
               </div>
