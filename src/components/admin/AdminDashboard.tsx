@@ -114,7 +114,12 @@ export function AdminDashboard({
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
 
-      showAlert(data.message || "Registration approved!");
+      if (data.emailSent === false) {
+        showAlert(data.message, "error");
+      } else {
+        showAlert(data.message || "Registration approved and confirmation pass emailed!");
+      }
+
       if (selectedReg?.id === id) {
         setSelectedReg(data.registration);
       }
