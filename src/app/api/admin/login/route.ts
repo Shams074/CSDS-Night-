@@ -18,14 +18,15 @@ export async function POST(req: NextRequest) {
     // 1. Admin Allowlist Check
     const adminAllowlist = (process.env.ADMIN_EMAILS || "admin@csds.uop.edu.pk")
       .split(",")
-      .map((e) => e.trim().toLowerCase());
+      .map((e) => e.trim().toLowerCase())
+      .filter(Boolean);
 
-    const isAllowed = adminAllowlist.includes(cleanEmail);
+    // Allow wildcard '*' to grant access to all authenticated Supabase users, or check specific email
+    const isAllowed = adminAllowlist.includes("*") || adminAllowlist.includes(cleanEmail);
     if (!isAllowed) {
       return NextResponse.json(
         {
-          error:
-            "Access denied. This email address is not in the administrator allowlist.",
+          error: `Access denied. "${cleanEmail}" is not listed in ADMIN_EMAILS inside your .env.local file. Add your email to ADMIN_EMAILS in .env.local and restart the server.`,
         },
         { status: 403 }
       );
