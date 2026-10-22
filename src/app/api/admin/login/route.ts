@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isSupabaseConfigured } from "@/lib/supabase/admin";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { isAdminEmail } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,19 +16,12 @@ export async function POST(req: NextRequest) {
 
     const cleanEmail = String(email).trim().toLowerCase();
 
-    // 1. Admin Allowlist Check (with default fallback for project administrators)
-    const defaultAdmins = "eliaj3618@gmail.com,admin@csds.uop.edu.pk,president.csds@gmail.com";
-    const adminAllowlist = (process.env.ADMIN_EMAILS ? `${process.env.ADMIN_EMAILS},${defaultAdmins}` : defaultAdmins)
-      .split(",")
-      .map((e) => e.trim().toLowerCase())
-      .filter(Boolean);
-
-    // Allow wildcard '*' to grant access to all authenticated Supabase users, or check specific email
-    const isAllowed = adminAllowlist.includes("*") || adminAllowlist.includes(cleanEmail);
+    // 1. Admin Allowlist Check
+    const isAllowed = isAdminEmail(cleanEmail);
     if (!isAllowed) {
       return NextResponse.json(
         {
-          error: `Access denied. "${cleanEmail}" is not listed in ADMIN_EMAILS inside your .env.local file. Add your email to ADMIN_EMAILS in .env.local and restart the server.`,
+          error: `Access denied. "${cleanEmail}" is not listed as an administrator.`,
         },
         { status: 403 }
       );

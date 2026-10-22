@@ -7,11 +7,19 @@ import { CardContainer } from "@/components/ui/CardContainer";
 import { ShieldCheck, Lock, Mail, AlertCircle, Loader2, ArrowLeft, ArrowUpRight } from "lucide-react";
 
 export default function AdminLoginPage() {
-  const [email, setEmail] = useState("admin@csds.uop.edu.pk");
+  const [email, setEmail] = useState("eliaj3618@gmail.com");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("error") === "unauthorized") {
+        setError("Your account does not have administrator privileges.");
+      }
+    }
+  }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,12 +39,11 @@ export default function AdminLoginPage() {
         throw new Error(data.error || "Authentication failed");
       }
 
-      router.push("/admin");
-      router.refresh();
+      // Hard redirect ensures all browser cookies and server credentials reload fresh
+      window.location.href = "/admin";
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Login failed";
       setError(msg);
-    } finally {
       setIsLoading(false);
     }
   };
