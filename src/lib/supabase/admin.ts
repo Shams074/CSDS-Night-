@@ -2,8 +2,9 @@ import { createClient } from "@supabase/supabase-js";
 import { Registration, AdminStats } from "../types";
 import { mockStore } from "../mockStore";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+const supabaseUrl = rawUrl.replace(/\/rest\/v1\/?$/i, "").replace(/\/+$/, "");
+const serviceRoleKey = (process.env.SUPABASE_SERVICE_ROLE_KEY || "").trim();
 
 export function isSupabaseConfigured(): boolean {
   return (
